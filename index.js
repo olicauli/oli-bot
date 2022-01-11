@@ -6,6 +6,10 @@ const { token } = require('./config.json');
 //create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
+//make a collection called events, and then read all files in ./events, 
+//but only filter in files that end in .js
+const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
+
 //make a collection called commands, and then read all files in ./commands, 
 //but only filter in files that end in .js
 client.commands = new Collection();
@@ -24,6 +28,7 @@ client.once('ready', () => {
 
 client.on('interactionCreate', async interaction => {
     //if it's not a command, return immediately
+    
     if (!interaction.isCommand())
     {
         return;
