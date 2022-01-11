@@ -9,7 +9,7 @@ module.exports = {
         }
         
         mongoose.connect(`mongodb+srv://olicauli:${password}@oli-bot.ly0c1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`);
-        mongoose.set('useFindAndModify', false);
+        //mongoose.set('useFindAndModify', false);
         mongoose.Promise = global.Promise;
         
         mongoose.connection.on('connected', () => {
