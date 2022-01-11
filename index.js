@@ -10,6 +10,16 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 //but only filter in files that end in .js
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 
+//event handler
+for (const file of eventFiles) {
+	const event = require(`./events/${file}`);
+	if (event.once) {
+		client.once(event.name, (...args) => event.execute(...args));
+	} else {
+		client.on(event.name, (...args) => event.execute(...args));
+	}
+}
+
 //make a collection called commands, and then read all files in ./commands, 
 //but only filter in files that end in .js
 client.commands = new Collection();
@@ -22,10 +32,7 @@ for (const file of commandFiles) {
     client.commands.set(command.data.name, command);
 }
 
-client.once('ready', () => {
-    console.log('ready!');
-});
-
+//command handler
 client.on('interactionCreate', async interaction => {
     //if it's not a command, return immediately
     
