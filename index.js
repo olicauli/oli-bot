@@ -1,7 +1,8 @@
 //required stuff
 const fs = require('fs'); //node file system module
 const { Client, Collection, Intents } = require('discord.js');
-const { token } = require('./config.json');
+//const { token } = require('./config.json');
+const token = process.env.TOKEN
 
 //create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
