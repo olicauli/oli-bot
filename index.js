@@ -1,17 +1,18 @@
-//required stuff
+//*****REQUIRED*****
 const fs = require('fs'); //node file system module
 const { Client, Collection, Intents } = require('discord.js');
+const mongoose = require('./database/mongoose')
 //const { token } = require('./config.json');
-const token = process.env.TOKEN
+const token = process.env.TOKEN;
 
-//create a new client instance
+//*****CLIENT*****
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
+//*****EVENT HANDLERT*****
 //make a collection called events, and then read all files in ./events, 
 //but only filter in files that end in .js
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 
-//event handler
 for (const file of eventFiles) {
 	const event = require(`./events/${file}`);
 	if (event.once) {
@@ -22,6 +23,7 @@ for (const file of eventFiles) {
 	}
 }
 
+//*****COMMAND HANDLER*****
 //make a collection called commands, and then read all files in ./commands, 
 //but only filter in files that end in .js
 client.commands = new Collection();
@@ -34,13 +36,10 @@ for (const file of commandFiles) {
     client.commands.set(command.data.name, command);
 }
 
-//command handler
 client.on('interactionCreate', async interaction => {
     //if it's not a command, return immediately
-    if (!interaction.isCommand())
-    {
-        return;
-    }
+    if (interaction.channel.type == 'dm') return;
+    if (!interaction.isCommand()) return;
     
     const command = client.commands.get(interaction.commandName);
     
@@ -60,5 +59,5 @@ client.on('interactionCreate', async interaction => {
     
 })
 
-//login to discord
+mongoose.init();
 client.login(token);
