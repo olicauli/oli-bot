@@ -15,7 +15,8 @@ for (const file of eventFiles) {
 	const event = require(`./events/${file}`);
 	if (event.once) {
 		client.once(event.name, (...args) => event.execute(...args));
-	} else {
+	} 
+	else {
 		client.on(event.name, (...args) => event.execute(...args));
 	}
 }
@@ -35,7 +36,6 @@ for (const file of commandFiles) {
 //command handler
 client.on('interactionCreate', async interaction => {
     //if it's not a command, return immediately
-    
     if (!interaction.isCommand())
     {
         return;

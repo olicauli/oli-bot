@@ -17,7 +17,7 @@ module.exports = {
         }
         
         const commands = new MessageEmbed()
-            .setColor('#0099ff')
+            .setColor('#ff99df')
             .setTitle('commands')
             .setDescription(commandNames.join(" "));
         
