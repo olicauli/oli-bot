@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const password = process.env.PASS;
+console.log(password);
 
 module.exports = {
     init: () => {
