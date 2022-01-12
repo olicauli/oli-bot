@@ -11,9 +11,15 @@ module.exports = {
         const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
         var commandNames = [];
         
+        var numCommands = 0;
         for (const file of commandFiles) {
+            numCommands++;
             const commandName = file.split(".")[0];
             commandNames.push(commandName);
+            if (numCommands % 4 === 0)
+            {
+                commandNames.push('\n');
+            }
         }
         
         const commands = new MessageEmbed()
@@ -21,7 +27,6 @@ module.exports = {
             .setTitle('commands')
             .setDescription(commandNames.join(" "));
         
-        await interaction.editReply( {content: 'here are the current commands included with hythlodaeus:',
-        embeds: [commands]} );
+        await interaction.editReply({ embeds: [commands] });
     },
 };

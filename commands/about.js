@@ -1,12 +1,18 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { version } = require('../package.json');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('about')
         .setDescription('replies information about hythlodaeus'),
     async execute(interaction) {
-        await interaction.reply(`hello! i am a robot created by oli, mostly to manage a to-do list.
-        \ncurrent version: ${version}`);
+        const embed = new MessageEmbed()
+            .setColor('#ff99df')
+            .setThumbnail(interaction.client.user.avatarURL())
+            .setTitle('who am i?')
+            .setDescription(`my name is hythlodaeus!\ni'm a robot created by SuperiorTea#0517.
+                            type /help to see all of my current commands!\n\ncurrent version: ${version}`);
+        await interaction.reply({ embeds: [embed] });
     },
 };
