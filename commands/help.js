@@ -27,7 +27,6 @@ module.exports = {
             .setTitle('commands')
             .setDescription(commandNames.join(" "));
         
-        await interaction.editReply( {content: 'here are the current commands included with hythlodaeus:',
-        embeds: [commands]} );
+        await interaction.editReply({ embeds: [commands] });
     },
 };
