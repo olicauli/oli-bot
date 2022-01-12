@@ -3,7 +3,7 @@
 const fs = require('fs'); //node file system module
 const { Client, Collection, Intents } = require('discord.js');
 const mongoose = require('./database/mongoose')
-//const { token } = require('./config.json');
+//const { token } = require('./config.json'); //switched to environment variables
 const token = process.env.TOKEN;
 
 //*****CLIENT*****
@@ -39,7 +39,10 @@ for (const file of commandFiles) {
 
 client.on('interactionCreate', async interaction => {
     //if it's not a command, return immediately
-    if (interaction.channel.type == 'dm') return;
+    if (interaction.guild === null) {
+        await interaction.reply("error: commands don't work in dms!\nplease try again in a server.");
+        return;
+        };
     if (!interaction.isCommand()) return;
     
     const command = client.commands.get(interaction.commandName);

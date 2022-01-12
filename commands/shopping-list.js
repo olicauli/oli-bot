@@ -33,6 +33,6 @@ module.exports = {
             .setTitle('shopping list')
             .setDescription('placeholder placeholder placeholder placeholder placeholder');
             
-        await interaction.reply({ content: 'the shopping list', embeds: [listItems], components: [row] });
+        await interaction.reply({ embeds: [listItems], components: [row] });
     },
 };
