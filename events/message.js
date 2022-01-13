@@ -1,10 +1,12 @@
 module.exports = {
     name: 'message',
     async execute(message) {
-        if (message.author == message.client.user) return;
-        if (message.content.contains("ily"))
+        console.log('in message');
+        if (message.author === message.client.user) return;
+        if (message.content.contains("ily hythlodaeus"))
         {
-            await message.react('💞')
+            console.log('in message ily');
+            await message.react('💞');
             await message.reply('<3');
         }
     }
