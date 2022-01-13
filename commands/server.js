@@ -7,7 +7,7 @@ const guildGuard = require('../helpers/guild-guard.js')
 async function serverInfoEmbed(interaction)
 {
     const embed = new MessageEmbed()
-    .setColor('#ff99df')
+    .setColor(global.HYTHLO_PINK)
     .setThumbnail(interaction.guild.iconURL())
     .setTitle(`${interaction.guild.name}'s info`)
     .setDescription(printServerInfo(interaction));

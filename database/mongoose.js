@@ -21,7 +21,7 @@ module.exports = {
             console.log(err);
         }
         finally {
-            // Ensures that the client will close when you finish/error
+            //ensures that the client will close when you finish/error
             mongoose.disconnect();
         }
         

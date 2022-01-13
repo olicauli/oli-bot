@@ -9,12 +9,7 @@ function isABot(userIsBot)
 
 function nick(interaction)
 {
-    if (!interaction.inGuild()) 
-    {
-        return `**your username:** ${interaction.user.username}`;
-    }
-    
-    return interaction.member.nickname?
+    return interaction.member.nickname || !interaction.inGuild()?
            `**your nickname:** ${interaction.member.nickname}`:
            `**your username:** ${interaction.user.username}`;
 }
@@ -45,7 +40,7 @@ module.exports = {
         .setDescription('replies with user info'),
     async execute(interaction) {
         const embed = new MessageEmbed()
-            .setColor('#ff99df')
+            .setColor(global.HYTHLO_PINK)
             .setThumbnail(interaction.user.avatarURL())
             .setTitle( `${interaction.user.username}'s info`)
             .setDescription(printEmbedDesc(interaction));

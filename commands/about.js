@@ -17,7 +17,7 @@ module.exports = {
         .setDescription('replies with information about hythlodaeus'),
     async execute(interaction) {
         const embed = new MessageEmbed()
-            .setColor('#ff99df')
+            .setColor(global.HYTHLO_PINK)
             .setThumbnail(interaction.client.user.avatarURL())
             .setTitle('who am i?')
             .setDescription(printEmbedDesc());
