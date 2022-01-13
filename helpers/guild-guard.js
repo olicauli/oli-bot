@@ -1,6 +1,9 @@
 const { MessageEmbed } = require('discord.js');
 
-async function executeIfInGuild(interaction, func)
+//checks if an interaction happened in a guild; if it is,
+//runs the provided function. if not, sends an embed telling
+//users to run the command in a server
+async function executeIfInGuild(interaction, func, funcArgs)
 {
     if (!interaction.inGuild())
     {
@@ -12,7 +15,7 @@ async function executeIfInGuild(interaction, func)
     }
     
     else {
-        func(interaction);
+        func(funcArgs);
     }
 }
 

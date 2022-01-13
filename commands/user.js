@@ -16,12 +16,9 @@ function nick(interaction)
 
 function guildSpecificInfo(interaction)
 {
-    if (!interaction.inGuild())
-    {
-        return "";
-    }
-    
-    return `**joined this server on:** ${fDate.formatDate(interaction.member.joinedAt)}`
+    return interaction.inGuild()?
+           `**joined this server on:** ${fDate.formatDate(interaction.member.joinedAt)}`:
+           '';
 }
 
 function printEmbedDesc(interaction)
@@ -30,7 +27,7 @@ function printEmbedDesc(interaction)
             **your tag:** ${interaction.user.tag}
             **your id:** ${interaction.user.id}
             **is a bot?** ${isABot(interaction.user.bot)}
-            ${guildSpecificInfo(interaction)}`
+            ${guildSpecificInfo(interaction)}`;
 }
 
 module.exports = {
