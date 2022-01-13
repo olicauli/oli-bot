@@ -69,7 +69,9 @@ all current possible commands are listed below.
 
 ## support
 
-if you encounter a bug or problem with hythlodaeus, you can 
+if you encounter a bug or problem with hythlodaeus, you can [create a new issue](https://github.com/olicauli/oli-bot/issues).
+
+if you would prefer to more privately report the bug, you can email me at <olicauli@pm.me>.
 
 ## to-do:
 
