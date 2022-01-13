@@ -3,7 +3,8 @@
 hythlodaeus is a fun little miscellaneous bot i've made for myself because i wanted an
 interactive shopping list in my personal discord server. since he is my first
 bot of any kind he is very bare-bones at the moment, and only contains a few 
-commands.
+commands. commands haven't been thoroughly tested yet, but they *should* work
+in server and DM channels.
 
 hythlodaeus is written entirely in javascript using discordJS, and currently uses MongoDB 
 for his database.
@@ -27,7 +28,7 @@ all current possible commands are listed below.
          discord tag (to be changed to github username in the future) and the 
          current version that is being run.
 
-/echo - replies back with whatever input was passed to it.
+/echo <input> - replies back with whatever input was passed to it.
 
 /help - lists all of the commands currently packaged with hythlodaeus.
 
@@ -47,7 +48,7 @@ all current possible commands are listed below.
         the user is a bot or not.
 ```
 
-##to-do:
+## to-do:
 
 the main goals for hythlodaeus's future is to get the shopping-list command up and running,
 and maybe add features allowing users to create their own custom lists and reminders. i am
