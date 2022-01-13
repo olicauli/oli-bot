@@ -19,14 +19,24 @@ function readCommands(client)
 
 function handleCommand(client)
 {
+    console.log("in handle command");
     readCommands(client);
     
     client.on('interactionCreate', async interaction => {
         //if it's not a command, return immediately
-        if (!interaction.guild) {
-            await interaction.reply("commands don't work in dms!\nplease try again in a server.");
+        /*
+        if (!interaction.inGuild()) {
+            await interaction.deferReply();
+            try {
+                await interaction.editReply("commands don't work in dms!\nplease try again in a server.");
+            }
+            catch(err) {
+                console.log(err);
+            }
             return;
-            };
+        };
+        */
+            
         if (!interaction.isCommand()) return;
         
         const command = client.commands.get(interaction.commandName);

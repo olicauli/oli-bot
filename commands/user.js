@@ -9,18 +9,33 @@ function isABot(userIsBot)
 
 function nick(interaction)
 {
+    if (!interaction.inGuild()) 
+    {
+        return `**your username:** ${interaction.user.username}`;
+    }
+    
     return interaction.member.nickname?
-           interaction.member.nickname:
-           interaction.user.username;
+           `**your nickname:** ${interaction.member.nickname}`:
+           `**your username:** ${interaction.user.username}`;
+}
+
+function guildSpecificInfo(interaction)
+{
+    if (!interaction.inGuild())
+    {
+        return "";
+    }
+    
+    return `**joined this server on:** ${fDate.formatDate(interaction.member.joinedAt)}`
 }
 
 function printEmbedDesc(interaction)
 {
-    return `**your nickname:** ${nick(interaction)}
+    return `${nick(interaction)}
             **your tag:** ${interaction.user.tag}
             **your id:** ${interaction.user.id}
-            **joined this server on:** ${fDate.formatDate(interaction.member.joinedAt)}
-            **is a bot?** ${isABot(interaction.user.bot)}`
+            **is a bot?** ${isABot(interaction.user.bot)}
+            ${guildSpecificInfo(interaction)}`
 }
 
 module.exports = {

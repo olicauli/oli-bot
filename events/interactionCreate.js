@@ -1,11 +1,17 @@
+function getGuild(interaction)
+{
+    let output = "a private DM channel";
+    if (interaction.inGuild())
+    {
+        output = '#' + interaction.guild.name;
+    }
+    
+    return output;
+}
+
 module.exports = {
     name: 'interactionCreate',
     execute(interaction) {
-        //console.log(interaction.channel);
-        if (!interaction.guild) {
-            interaction.reply("commands don't work in dms!\nplease try again in a server.");
-            return;
-        };
-        console.log(`${interaction.user.tag} in #${interaction.channel.name} triggered an interaction.`);
+        console.log(`${interaction.user.tag} in ${getGuild(interaction)} triggered an interaction.`);
     }
 }

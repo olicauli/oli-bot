@@ -2,6 +2,17 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
 
 const fDate = require('../helpers/format-date.js')
+const guildGuard = require('../helpers/guild-guard.js')
+
+async function serverInfoEmbed(interaction)
+{
+    const embed = new MessageEmbed()
+    .setColor('#ff99df')
+    .setThumbnail(interaction.guild.iconURL())
+    .setTitle(`${interaction.guild.name}'s info`)
+    .setDescription(printServerInfo(interaction));
+    await interaction.reply({ embeds: [embed] });
+}
 
 function printServerInfo(interaction)
 {
@@ -22,11 +33,6 @@ module.exports = {
         .setName('server')
         .setDescription('replies with server info'),
     async execute(interaction) {
-        const embed = new MessageEmbed()
-            .setColor('#ff99df')
-            .setThumbnail(interaction.guild.iconURL())
-            .setTitle(`${interaction.guild.name}'s info`)
-            .setDescription(printServerInfo(interaction));
-        await interaction.reply({ embeds: [embed] });
+        guildGuard.executeIfInGuild(interaction, serverInfoEmbed);
     },
 };
