@@ -16,7 +16,7 @@ const eventHandler = require('./helpers/event-handler.js');
 global.HYTHLO_PINK = "#cfb3ee" //the default pink color used in embeds
 
 //code that runs the bot
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 eventHandler.handleEvent(client);
 commandHandler.handleCommand(client);
 
