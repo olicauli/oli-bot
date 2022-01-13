@@ -1,5 +1,42 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
+const fDate = require('../helpers/format-date.js')
+
+function isABot(userIsBot)
+{
+    return userIsBot?"yes":"no";
+}
+
+function nick(interaction)
+{
+    if (!interaction.inGuild()) 
+    {
+        return `**your username:** ${interaction.user.username}`;
+    }
+    
+    return interaction.member.nickname?
+           `**your nickname:** ${interaction.member.nickname}`:
+           `**your username:** ${interaction.user.username}`;
+}
+
+function guildSpecificInfo(interaction)
+{
+    if (!interaction.inGuild())
+    {
+        return "";
+    }
+    
+    return `**joined this server on:** ${fDate.formatDate(interaction.member.joinedAt)}`
+}
+
+function printEmbedDesc(interaction)
+{
+    return `${nick(interaction)}
+            **your tag:** ${interaction.user.tag}
+            **your id:** ${interaction.user.id}
+            **is a bot?** ${isABot(interaction.user.bot)}
+            ${guildSpecificInfo(interaction)}`
+}
 
 module.exports = {
     //user info
@@ -11,10 +48,7 @@ module.exports = {
             .setColor('#ff99df')
             .setThumbnail(interaction.user.avatarURL())
             .setTitle( `${interaction.user.username}'s info`)
-            .setDescription(`your nickname: ${interaction.member.nickname}\nyour tag: ${interaction.user.tag}
-                            your id: ${interaction.user.id}
-                            joined this server on: ${interaction.member.joinedAt}
-                            is a bot? ${interaction.user.bot}`);
+            .setDescription(printEmbedDesc(interaction));
         await interaction.reply({ embeds: [embed] });
     },
 };

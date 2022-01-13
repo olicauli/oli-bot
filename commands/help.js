@@ -24,8 +24,8 @@ module.exports = {
         
         const commands = new MessageEmbed()
             .setColor('#ff99df')
-            .setTitle('commands')
-            .setDescription(commandNames.join(" "));
+            .setTitle('current commands')
+            .setDescription('\`' + commandNames.join(" ") + '\`');
         
         await interaction.editReply({ embeds: [commands] });
     },

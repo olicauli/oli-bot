@@ -8,9 +8,19 @@ module.exports = {
             useUnifiedTopology: true
         }
         
-        mongoose.connect(`mongodb+srv://olicauli:${password}@oli-bot.ly0c1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`);
-        //mongoose.set('useFindAndModify', false);
-        mongoose.Promise = global.Promise;
+        try {
+            mongoose.connect(`mongodb+srv://olicauli:${password}@oli-bot.ly0c1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`);
+            //mongoose.set('useFindAndModify', false);
+            mongoose.Promise = global.Promise;
+        }   
+        catch (err) {
+            console.log(err);
+        }
+        finally {
+            // Ensures that the client will close when you finish/error
+            mongoose.disconnect();
+        }
+        
         
         mongoose.connection.on('connected', () => {
             console.log('the bot has connected to the database.');
