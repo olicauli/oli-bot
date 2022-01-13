@@ -43,7 +43,7 @@ in order to run the bot, make sure that you have [npm](https://www.npmjs.com/) a
    to launch hythlodaeus.
 
 note: if you want to delete or deploy your own server-specific commands, you will need an additional environment variable:
-`GUILD_ID`. simply set this variable to your server's id, and then you can run the guild scripts in the scripts folder.
+`GUILD_ID`. simply set this variable to your server's id, and then you can run the guild-specific scripts in the scripts folder.
 
 ## usage
 
