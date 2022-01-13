@@ -30,7 +30,7 @@ in order to run the bot, make sure that you have [npm](https://www.npmjs.com/) a
 5. to run the bot you will need to set up four environment variables: `TOKEN`, `CLIENT_ID`, `DB_USERNAME`, and `DB_PASS`.
    set `TOKEN` to your bot instance's token, `CLIENT_ID` to your bot instance's client id,
    `DB_USERNAME` to the username for your mongoDB database, and `DB_PASS` to the password for your database.
-6. once you have set up environment variables, you can run the bot! enter `node index.js` or `node .` in your terminal 
+6. once you have set up environment variables, you can run the bot! enter `node app.js` or `node .` in your terminal 
    to launch hythlodaeus.
 
 note: if you want to delete or deploy your own server-specific commands, you will need an additional environment variable:
@@ -67,24 +67,35 @@ all current possible commands are listed below.
         when the user joined the server (if executed in a discord server), and whether
         the user is a bot or not.
 
+## support
+
+if you encounter a bug or problem with hythlodaeus, you can 
+
 ## to-do:
 
-the main goals for hythlodaeus's future is to get the shopping-list command up and running,
-and maybe add features allowing users to create their own custom lists and reminders. i am
-also thinking about adding some music-related commands or a music-based offshoot.
+### imminent:
+- get the shopping-list command up and running
+- figure out how to get message.js working
+- set up automated tests
 
-i also want to write some automated tests, because i want to be 100% sure hythlodaeus won't 
-randomly crash and also it's just generally good practice.
+### future goals:
 
-## contributing
+- allow users to create their own custom lists
+- allow users to set reminders
+- add more fun little miscellaneous commands
+- permissions? maybe?
+- perhaps. add some music commands
 
-anyone is free to contribute!
+## contributions
 
 code mostly written by olicauli; a lot of stuff has also been taken from the discordJS docs,
 including the event-handler.js code and the command-handler.js code.
 
 if i've taken or modified code from somewhere else, i will try to provide the resources used
 in the code file where it is being borrowed.
+
+hythlodaeus's avatar is a screenshot from final fantasy 14: endwalker; it will probably change 
+in the future.
 
 ## license
 
