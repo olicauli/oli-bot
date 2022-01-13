@@ -1,7 +1,7 @@
 # hythlodaeus: baby's first discord bot
 
 hythlodaeus is a fun little miscellaneous bot i've made for myself because i wanted an
-interactive shopping list in my personal discord server. since he is my first
+interactive shopping list (which isn't functional atm) in my personal discord server. since he is my first
 bot of any kind he is very bare-bones at the moment, and only contains a few 
 commands. commands haven't been thoroughly tested yet, but they *should* work
 in server and DM channels.
