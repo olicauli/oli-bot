@@ -13,10 +13,11 @@ const eventHandler = require('./helpers/event-handler.js');
 
 //global variables
 //the previous pink: #ff99df
-global.HYTHLO_PINK = "#cfb3ee" //the default pink color used in embeds
+global.HYTHLO_PINK = "#cfb3ee" //the default color used in embeds
 
 //code that runs the bot
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES], 
+                            partials: ["CHANNEL"] }); //this partial allows it to check messages in dms
 eventHandler.handleEvent(client);
 commandHandler.handleCommand(client);
 
