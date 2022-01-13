@@ -9,7 +9,7 @@ function isABot(userIsBot)
 
 function nick(interaction)
 {
-    return interaction.member.nickname || !interaction.inGuild()?
+    return interaction.inGuild() && interaction.member.nickname?
            `**your nickname:** ${interaction.member.nickname}`:
            `**your username:** ${interaction.user.username}`;
 }
