@@ -27,7 +27,7 @@ all current possible commands are listed below.
          discord tag (to be changed to github username in the future) and the 
          current version that is being run.
 
-`/echo <input>`` - replies back with whatever input was passed to it.
+`/echo <input>` - replies back with whatever input was passed to it.
 
 `/help` - lists all of the commands currently packaged with hythlodaeus.
 
