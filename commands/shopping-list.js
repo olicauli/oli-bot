@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
+var mongoose = require('mongoose');
 const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
 const fs = require('fs'); //node file system module
 
