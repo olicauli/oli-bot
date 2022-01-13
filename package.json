@@ -1,6 +1,6 @@
 {
   "name": "oli-bot",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "a discord bot",
   "main": "index.js",
   "scripts": {
