@@ -1,4 +1,5 @@
 //*****REQUIRED*****
+require('dotenv').config();
 const fs = require('fs'); //node file system module
 const { Client, Collection, Intents } = require('discord.js');
 const mongoose = require('./database/mongoose')
