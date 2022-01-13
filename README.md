@@ -6,8 +6,18 @@ bot of any kind he is very bare-bones at the moment, and only contains a few
 commands. commands haven't been thoroughly tested yet, but they *should* work
 in server and DM channels.
 
-hythlodaeus is written entirely in javascript using discordJS, and currently uses MongoDB 
-for his database.
+**frameworks used:**
+
+hythlodaeus is written entirely in javascript using discordJS, node.js, and currently uses MongoDB 
+as a database.
+
+## table of contents
+- [installation](#installation)
+- [usage (commands)](#usage)
+- [support](#support)
+- [to-do list](#to-do-)
+- [contributions](#contributions)
+- [license](#license)
 
 ## installation
 
@@ -66,7 +76,7 @@ all current possible commands are listed below.
         when the user joined the server (if executed in a discord server), and whether
         the user is a bot or not.
 
-### messages
+### messages:
 
 hythlodaeus will respond or react if certain messages are sent in a channel, thread, or DM. 
 
@@ -79,7 +89,7 @@ if you encounter a bug or problem with hythlodaeus, you can [create a new issue]
 
 if you would prefer to more privately report the bug, you can email me at <olicauli@pm.me>.
 
-## to-do:
+## to-do list
 
 ### imminent:
 - get the shopping-list command up and running
