@@ -1,3 +1,5 @@
+//most of this code is from the DiscordJS guide:
+//https://discordjs.guide/creating-your-bot/event-handling.html
 const fs = require('fs'); //node file system module
 
 function handleEvent(client)

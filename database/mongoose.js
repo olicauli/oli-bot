@@ -1,3 +1,6 @@
+//most of this code is modified from this youtube video:
+//https://www.youtube.com/watch?v=Bg1d2ho2pgY
+
 const mongoose = require('mongoose');
 const password = process.env.PASS;
 
