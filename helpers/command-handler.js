@@ -7,7 +7,10 @@ function readCommands(client)
     const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
     
     for (const file of commandFiles) {
-        const command = require(`./commands/${file}`);
+        //for some wack ass reason the filepath is different once
+        //it's in this function; i don't know javascript or node.js well enough
+        //to explain why
+        const command = require(`../commands/${file}`);
         //set a new item in the collection with the key 
         //as the command name and the value as the exported module
         client.commands.set(command.data.name, command);

@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
-const fDate = require('../format-date.js')
+const fDate = require('../helpers/format-date.js')
 
 function isABot(userIsBot)
 {
