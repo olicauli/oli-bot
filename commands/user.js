@@ -9,24 +9,16 @@ function isABot(userIsBot)
 
 function nick(interaction)
 {
-    if (!interaction.inGuild()) 
-    {
-        return `**your username:** ${interaction.user.username}`;
-    }
-    
-    return interaction.member.nickname?
+    return interaction.inGuild() && interaction.member.nickname?
            `**your nickname:** ${interaction.member.nickname}`:
            `**your username:** ${interaction.user.username}`;
 }
 
 function guildSpecificInfo(interaction)
 {
-    if (!interaction.inGuild())
-    {
-        return "";
-    }
-    
-    return `**joined this server on:** ${fDate.formatDate(interaction.member.joinedAt)}`
+    return interaction.inGuild()?
+           `**joined this server on:** ${fDate.formatDate(interaction.member.joinedAt)}`:
+           '';
 }
 
 function printEmbedDesc(interaction)
@@ -35,7 +27,7 @@ function printEmbedDesc(interaction)
             **your tag:** ${interaction.user.tag}
             **your id:** ${interaction.user.id}
             **is a bot?** ${isABot(interaction.user.bot)}
-            ${guildSpecificInfo(interaction)}`
+            ${guildSpecificInfo(interaction)}`;
 }
 
 module.exports = {
@@ -45,7 +37,7 @@ module.exports = {
         .setDescription('replies with user info'),
     async execute(interaction) {
         const embed = new MessageEmbed()
-            .setColor('#ff99df')
+            .setColor(global.HYTHLO_PINK)
             .setThumbnail(interaction.user.avatarURL())
             .setTitle( `${interaction.user.username}'s info`)
             .setDescription(printEmbedDesc(interaction));

@@ -21,7 +21,6 @@ function readCommands(client)
 
 function handleCommand(client)
 {
-    console.log("in handle command");
     readCommands(client);
     
     client.on('interactionCreate', async interaction => {

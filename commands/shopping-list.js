@@ -2,13 +2,6 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
 const fs = require('fs'); //node file system module
 
-//using a json file for now--may try and switch
-//to mongodb later to gain some experience using
-//a database
-//read the shopping-list
-//let listFile = '../database/shopping-list.json'
-//let list = fs.readFileSync(listFile)
-
 function updateShoppingList()
 {
     
@@ -92,7 +85,7 @@ module.exports = {
             );
             
         const listItems = new MessageEmbed()
-            .setColor('#ff99df')
+            .setColor(global.HYTHLO_PINK)
             .setTitle('shopping list')
             .setDescription(printShoppingList());
             
