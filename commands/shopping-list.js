@@ -12,6 +12,7 @@ module.exports = {
         const row = new MessageActionRow()
             .addComponents
             (
+                /*
                 new MessageButton()
                 .setCustomId('add')
                 .setLabel('add item')
@@ -21,6 +22,7 @@ module.exports = {
                 .setCustomId('remove')
                 .setLabel('remove item')
                 .setStyle('DANGER'),
+                */
                 
                 new MessageButton()
                 .setCustomId('clear')

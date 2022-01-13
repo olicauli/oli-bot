@@ -1,6 +1,21 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
 
+const fDate = require('../format-date.js')
+
+function printServerInfo(interaction)
+{
+    return `**server name:** ${interaction.guild.name}
+            **server id:** ${interaction.guildId}
+            **description:** ${gDescription(interaction.description)}
+            **created on:** ${fDate.formatDate(interaction.guild.createdAt)}
+            **total members:** ${interaction.guild.memberCount}`
+}
+
+function gDescription(desc) {
+    return desc? desc: "(no description found)";
+}
+
 module.exports = {
     //server info
     data: new SlashCommandBuilder()
@@ -11,9 +26,7 @@ module.exports = {
             .setColor('#ff99df')
             .setThumbnail(interaction.guild.iconURL())
             .setTitle(`${interaction.guild.name}'s info`)
-            .setDescription(`server name: ${interaction.guild.name}\nserver id: ${interaction.guild.guildID}
-                            description: ${interaction.guild.description}\ncreated on: ${interaction.guild.createdAt}
-                            total members: ${interaction.guild.memberCount}`);
+            .setDescription(printServerInfo(interaction));
         await interaction.reply({ embeds: [embed] });
     },
 };
