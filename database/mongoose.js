@@ -1,8 +1,9 @@
 //most of this code is modified from this youtube video:
 //https://www.youtube.com/watch?v=Bg1d2ho2pgY
-
+require('dotenv').config();
 const mongoose = require('mongoose');
-const password = process.env.PASS;
+const password = process.env.DB_PASS;
+const username = process.env.DB_USERNAME;
 
 module.exports = {
     init: () => {
@@ -12,7 +13,7 @@ module.exports = {
         }
         
         try {
-            mongoose.connect(`mongodb+srv://olicauli:${password}@oli-bot.ly0c1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`);
+            mongoose.connect(`mongodb+srv://${username}:${password}@oli-bot.ly0c1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`);
             //mongoose.set('useFindAndModify', false);
             mongoose.Promise = global.Promise;
         }   

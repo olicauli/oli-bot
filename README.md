@@ -11,9 +11,31 @@ for his database.
 
 ## installation
 
-```
-TBA
-```
+### to get the bot on your server:
+simply go to this link to add hythlodaeus to your server:
+
+https://discord.com/api/oauth2/authorize?client_id=930384652714246175&permissions=517544070208&scope=bot%20applications.commands
+
+### to create your own version of hythlodaeus
+
+in order to run the bot, make sure that you have [npm](https://www.npmjs.com/) and [node.js](https://nodejs.org/en/) installed.
+
+1. follow the discordJS instructions for setting up a bot application:
+   https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot
+2. set up a mongoDB database; you may set up another database if you prefer, but you will have to
+   edit some code, since hythlodaeus uses mongoose.
+   https://www.mongodb.com/
+3. once the bot application has been set up and the bot is running on your server, create a folder 
+   where you want to keep the bot and clone or fork this repo to that folder.
+4. open up a terminal of your choice, navigate to the folder and run the command `npm install`
+5. to run the bot you will need to set up four environment variables: `TOKEN`, `CLIENT_ID`, `DB_USERNAME`, and `DB_PASS`.
+   set `TOKEN` to your bot instance's token, `CLIENT_ID` to your bot instance's client id,
+   `DB_USERNAME` to the username for your mongoDB database, and `DB_PASS` to the password for your database.
+6. once you have set up environment variables, you can run the bot! enter `node index.js` or `node .` in your terminal 
+   to launch hythlodaeus.
+
+note: if you want to delete or deploy your own server-specific commands, you will need an additional environment variable:
+`GUILD_ID`. simply set this variable to your server's id, and then you can run the guild scripts in the scripts folder.
 
 ## usage
 
@@ -56,6 +78,8 @@ i also want to write some automated tests, because i want to be 100% sure hythlo
 randomly crash and also it's just generally good practice.
 
 ## contributing
+
+anyone is free to contribute!
 
 code mostly written by olicauli; a lot of stuff has also been taken from the discordJS docs,
 including the event-handler.js code and the command-handler.js code.
