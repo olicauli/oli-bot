@@ -1,12 +1,8 @@
 function getGuild(interaction)
 {
-    let output = "a private DM channel";
-    if (interaction.inGuild())
-    {
-        output = '#' + interaction.guild.name;
-    }
-    
-    return output;
+    return interaction.inGuild()?
+    '#' + interaction.guild.name:
+    "a private DM channel";
 }
 
 module.exports = {
@@ -14,4 +10,4 @@ module.exports = {
     execute(interaction) {
         console.log(`${interaction.user.tag} in ${getGuild(interaction)} triggered an interaction.`);
     }
-}
+};

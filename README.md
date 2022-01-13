@@ -11,17 +11,16 @@ for his database.
 
 ## installation
 
-### to get the bot on your server:
-simply go to this link to add hythlodaeus to your server:
+### to get the bot:
+[click here to add hythlodaeus to a server!](https://discord.com/api/oauth2/authorize?client_id=930384652714246175&permissions=517544070208&scope=bot%20applications.commands)
 
-https://discord.com/api/oauth2/authorize?client_id=930384652714246175&permissions=517544070208&scope=bot%20applications.commands
-
-### to create your own version of hythlodaeus
+### to create your own version of hythlodaeus:
 
 in order to run the bot, make sure that you have [npm](https://www.npmjs.com/) and [node.js](https://nodejs.org/en/) installed.
 
-1. [follow the discordJS instructions]((https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot))
-   for setting up a bot application.
+1. [follow the discordJS instructions](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot)
+   for setting up a bot application. hythlodaeus needs `bot` and `application.commands` options enabled, as well as `read/send message`,
+   `embed link`, and `add reaction` permissions.
 2. [set up a mongoDB database](https://docs.atlas.mongodb.com/getting-started/); you may set up another database if you prefer, but you will have to
    edit some code, since hythlodaeus uses mongoose.
 3. once the bot application has been set up and the bot is running on your server, create a folder 
