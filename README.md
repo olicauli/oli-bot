@@ -66,6 +66,13 @@ all current possible commands are listed below.
         when the user joined the server (if executed in a discord server), and whether
         the user is a bot or not.
 
+### messages
+
+hythlodaeus will respond or react if certain messages are sent in a channel, thread, or DM. 
+
+`ily hythlodaeus please respond` - hythlodaeus will react with a revolving heart emoji. this is mostly for 
+testing purposes and will be removed or changed in future commits.
+
 ## support
 
 if you encounter a bug or problem with hythlodaeus, you can [create a new issue](https://github.com/olicauli/oli-bot/issues).
