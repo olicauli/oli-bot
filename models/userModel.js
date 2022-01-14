@@ -1,11 +1,13 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-var Schema = mongoose.Schema;
+let Schema = mongoose.Schema;
 
 //represents a discord user -- to be used for author and editor fields
-var userModel = new Schema(
+let userModel = Schema(
     {
-        clientId: Number
+        username: String,
+        userId: Number, //discord id found from devtools
+        lists: [{ type: Schema.Types.ObjectId, ref: 'list' }] //lists this user has permission to edit
     });
     
 module.exports = mongoose.model('user', userModel);
