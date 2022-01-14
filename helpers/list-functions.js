@@ -1,3 +1,5 @@
+//WIP stuff
+/*
 function createList(lName)
 {
     
@@ -13,14 +15,32 @@ function updateList(list)
     
 }
 
-async function printList(list)
+function removeItem(list, item)
+{
+    
+}
+
+function clearShoppingList(list)
+{
+    
+    
+}
+
+function addItem(list, item)
+{
+
+}
+*/
+
+function printList() //not the final form; printList will change to require args and
+                     //change output depending on list contents
 {
     let output = `**there's nothing on your shopping list!**
                   
-                  type \`/shopping-list add <input>\` to add an item.
+                  type \`/list add <input>\` to add an item.
                   the buttons should let you clear or delete the list,
-                  but you may also use \`/shopping-list rm <item-number>\`
-                  to delete an item, or \`/shopping-list clear\` to clear
+                  but you may also use \`/list rm <item-number>\`
+                  to delete an item, or \`/list clear\` to clear
                   the list.`
     /*
     if (!list.empty())
@@ -39,25 +59,5 @@ async function printList(list)
     return output;
 }
 
-function addItem(list, item)
-{
-    /*
-    const item = {
-        (list.length + 1): input;
-    }
-    
-    const itemJsonFormat = JSON.stringify(item, null, 4);
-    fs.appendFileSync(listFile, itemJsonFormat);
-    */
-}
 
-function removeItem(list, item)
-{
-    
-}
-
-function clearShoppingList(list)
-{
-    
-    
-}
+module.exports = { printList };
