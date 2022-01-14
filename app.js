@@ -17,6 +17,7 @@ global.HYTHLO_PINK = "#cfb3ee" //the default color used in embeds
 //code that runs the bot
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES], 
                             partials: ["CHANNEL"] }); //this partial allows it to check messages in dms
+//handlers
 eventHandler.handleEvent(client);
 commandHandler.handleCommand(client);
 

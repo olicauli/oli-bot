@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
-const fDate = require('../helpers/format-date.js')
+const dateFuncs = require('../helpers/format-date.js')
 
 function isABot(userIsBot)
 {
@@ -17,7 +17,7 @@ function nick(interaction)
 function guildSpecificInfo(interaction)
 {
     return interaction.inGuild()?
-           `**joined this server on:** ${fDate.formatDate(interaction.member.joinedAt)}`:
+           `**joined this server on:** ${dateFuncs.formatDate(interaction.member.joinedAt)}`:
            '';
 }
 
