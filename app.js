@@ -2,7 +2,6 @@
 require('dotenv').config();
 const fs = require('fs'); //node file system module
 const { Client, Collection, Intents } = require('discord.js');
-const mongoose = require('./database/mongoose')
 
 //environmental variables
 const token = process.env.TOKEN;
@@ -21,5 +20,4 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 eventHandler.handleEvent(client);
 commandHandler.handleCommand(client);
 
-mongoose.init();
 client.login(token);

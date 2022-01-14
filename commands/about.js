@@ -5,7 +5,7 @@ const { MessageEmbed } = require('discord.js');
 function printEmbedDesc() 
 {
     return `my name is hythlodaeus!
-            i'm a robot created by **SuperiorTea#0517**.
+            i'm a robot created by [olicauli](https://github.com/olicauli).
             type \`/help\` to see all of my current commands!
             
             current version: ${version}`

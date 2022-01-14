@@ -8,8 +8,7 @@ in server and DM channels.
 
 **frameworks used:**
 
-hythlodaeus is written entirely in javascript using discordJS, node.js, and currently uses MongoDB 
-as a database.
+hythlodaeus is written entirely in javascript using discordJS and node.js.
 
 ## table of contents
 - [installation](#installation)
@@ -33,14 +32,12 @@ in order to run the bot, make sure that you have [npm](https://www.npmjs.com/) a
 1. [follow the discordJS instructions](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot)
    for setting up a bot application. hythlodaeus needs `bot` and `application.commands` options enabled, as well as `read/send message`,
    `embed link`, and `add reaction` permissions.
-2. ~~[set up a mongoDB database](https://docs.atlas.mongodb.com/getting-started/); you may set up another database if you prefer, but you will have to
-   edit some code, since hythlodaeus uses mongoose.~~ under construction
-3. once the bot application has been set up and the bot is running on your server, create a folder 
+2. once the bot application has been set up and the bot is running on your server, create a folder 
    where you want to keep the bot and clone or fork this repo to that folder.
-4. open up a terminal of your choice, navigate to the folder and run the command `npm install`
-5. to run the bot you will need to set up four environment variables: `TOKEN`, `CLIENT_ID`, `DB_USERNAME`, and `DB_PASS`.
-   set `TOKEN` to your bot instance's token, `CLIENT_ID` to your bot instance's client id.
-6. once you have set up environment variables, you can run the bot! enter `node app.js` or `node .` in your terminal 
+3. open up a terminal of your choice, navigate to the folder and run the command `npm install`
+4. to run the bot you will need to set up two environment variables: `TOKEN` and `CLIENT_ID`.
+   set `TOKEN` to your bot instance's token and `CLIENT_ID` to your bot instance's client id.
+5. once you have set up environment variables, you can run the bot! enter `node app.js` or `node .` in your terminal 
    to launch hythlodaeus.
 
 note: if you want to delete or deploy your own server-specific commands, you will need an additional environment variable:
@@ -67,9 +64,9 @@ all current possible commands are listed below.
 `/server` - replies with the server name, id, description, creation date, and total members.
           if DMed this command, hythlodaeus will reply back with an error message.
           
-`/shopping-list` - WIP, DOES NOT WORK - a command that allows users to view add, remove, or clear items from
-                       a shopping list located in a MongoDB database. but because i am a baby
-                       i haven't currently integrated the database yet, so this command
+`/list` - WIP, DOES NOT WORK - a command that allows users to view add, remove, or clear items from
+                       a shopping list. because i am a baby
+                       i haven't currently integrated the database for this yet, so this command
                        is almost entirely nonfunctional. will reply telling the user that the 
                        shopping list is empty.
 
