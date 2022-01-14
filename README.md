@@ -26,6 +26,8 @@ as a database.
 
 ### to create your own version of hythlodaeus:
 
+note: this set of instructions won't fully work due to the database not being set up or fully configurable yet.
+
 in order to run the bot, make sure that you have [npm](https://www.npmjs.com/) and [node.js](https://nodejs.org/en/) installed.
 
 1. [follow the discordJS instructions](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot)
@@ -37,8 +39,7 @@ in order to run the bot, make sure that you have [npm](https://www.npmjs.com/) a
    where you want to keep the bot and clone or fork this repo to that folder.
 4. open up a terminal of your choice, navigate to the folder and run the command `npm install`
 5. to run the bot you will need to set up four environment variables: `TOKEN`, `CLIENT_ID`, `DB_USERNAME`, and `DB_PASS`.
-   set `TOKEN` to your bot instance's token, `CLIENT_ID` to your bot instance's client id,
-   `DB_USERNAME` to the username for your mongoDB database, and `DB_PASS` to the password for your database.
+   set `TOKEN` to your bot instance's token, `CLIENT_ID` to your bot instance's client id.
 6. once you have set up environment variables, you can run the bot! enter `node app.js` or `node .` in your terminal 
    to launch hythlodaeus.
 
