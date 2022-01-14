@@ -62,9 +62,9 @@ all current possible commands are listed below.
 `/server` - replies with the server name, id, description, creation date, and total members.
           if DMed this command, hythlodaeus will reply back with an error message.
           
-`/shopping-list` - WIP, DOES NOT WORK - a command that allows users to view add, remove, or clear items from
-                       a shopping list located in a MongoDB database. but because i am a baby
-                       i haven't currently integrated the database yet, so this command
+`/list` - WIP, DOES NOT WORK - a command that allows users to view add, remove, or clear items from
+                       a shopping list. because i am a baby
+                       i haven't currently integrated the database for this yet, so this command
                        is almost entirely nonfunctional. will reply telling the user that the 
                        shopping list is empty.
 
