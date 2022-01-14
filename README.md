@@ -31,8 +31,8 @@ in order to run the bot, make sure that you have [npm](https://www.npmjs.com/) a
 1. [follow the discordJS instructions](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot)
    for setting up a bot application. hythlodaeus needs `bot` and `application.commands` options enabled, as well as `read/send message`,
    `embed link`, and `add reaction` permissions.
-2. [set up a mongoDB database](https://docs.atlas.mongodb.com/getting-started/); you may set up another database if you prefer, but you will have to
-   edit some code, since hythlodaeus uses mongoose.
+2. ~~[set up a mongoDB database](https://docs.atlas.mongodb.com/getting-started/); you may set up another database if you prefer, but you will have to
+   edit some code, since hythlodaeus uses mongoose.~~ under construction
 3. once the bot application has been set up and the bot is running on your server, create a folder 
    where you want to keep the bot and clone or fork this repo to that folder.
 4. open up a terminal of your choice, navigate to the folder and run the command `npm install`
