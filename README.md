@@ -25,6 +25,8 @@ hythlodaeus is written entirely in javascript using discordJS and node.js.
 
 ### to create your own version of hythlodaeus:
 
+note: this set of instructions won't fully work due to the database not being set up or fully configurable yet.
+
 in order to run the bot, make sure that you have [npm](https://www.npmjs.com/) and [node.js](https://nodejs.org/en/) installed.
 
 1. [follow the discordJS instructions](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot)
