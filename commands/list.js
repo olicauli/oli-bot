@@ -1,16 +1,14 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-var mongoose = require('mongoose');
 const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
 const fs = require('fs'); //node file system module
+const listFunc = require('../helpers/list-functions.js');
 
 //our database models
-var listModel = require('../models/listModel');
-var userModel = require('../models/userModel');
 
 module.exports = {
     //user info
     data: new SlashCommandBuilder()
-        .setName('shopping-list')
+        .setName('list')
         .setDescription('view/add/remove stuff on the shopping list (WIP)'),
     async execute(interaction) {
         await interaction.deferReply();
@@ -38,7 +36,7 @@ module.exports = {
         const listItems = new MessageEmbed()
             .setColor(global.HYTHLO_PINK)
             .setTitle('shopping list')
-            .setDescription(printShoppingList());
+            .setDescription(listFunc.printList());
             
         await interaction.editReply({ embeds: [listItems], components: [row] });
     },

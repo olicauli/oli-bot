@@ -1,7 +1,3 @@
-const mongoose = require('mongoose');
-const username = process.env.DB_USERNAME;
-const password = process.env.DB_PASS;
-
 function createList(lName)
 {
     
@@ -17,7 +13,7 @@ function updateList(list)
     
 }
 
-function printList(list)
+async function printList(list)
 {
     let output = `**there's nothing on your shopping list!**
                   
