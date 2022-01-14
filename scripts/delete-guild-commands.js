@@ -8,6 +8,7 @@ const token = process.env.TOKEN;
 const clientId = process.env.CLIENT_ID;
 const guildId = process.env.GUILD_ID;
     
+console.log("deleting guild commands...");
 const rest = new REST({ version: '9' }).setToken(token);
 rest.get(Routes.applicationGuildCommands(clientId, guildId))
     .then(data => {
@@ -18,3 +19,4 @@ rest.get(Routes.applicationGuildCommands(clientId, guildId))
         }
         return Promise.all(promises);
     });
+console.log("deleted!");
