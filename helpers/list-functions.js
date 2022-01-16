@@ -6,6 +6,7 @@ const { Sequelize, Op } = require('sequelize');
 const usrModel = require('../models/user.js');
 const listModel = require('../models/list.js');
 const { RequestManager } = require('@discordjs/rest');
+const list = require('../commands/list.js');
 
 //database
 const sequelize = new Sequelize(dbname, user, pass, {
@@ -15,7 +16,7 @@ const sequelize = new Sequelize(dbname, user, pass, {
 
 //create list
 // /list create <name> <editors (optional)> <items (optional)>
-async function createList(listName, editors, items)
+async function createList(listName, editors, items, author)
 {
     if (listName == undefined)
     {
@@ -38,10 +39,22 @@ async function createList(listName, editors, items)
         //populate itemsArr
     }
 
-
-    await listModel.List.create({ name: listName, 
-                  editors: editorsArr,
-                  items: itemsArr });
+    try 
+    {
+        await listModel.List.create({ name: listName, 
+            authorId: author,
+            editors: editorsArr,
+            items: itemsArr });
+    }
+    catch (error)
+    {
+        if (error.name === 'SequelizeUniqueConstraintError') 
+        {
+            //tag already exists; return an error message
+        }
+    
+        //something different went wrong; return an error message
+    }
 }
 //delete list
 async function deleteList(list)
@@ -49,14 +62,45 @@ async function deleteList(list)
     await list.destroy();
 }
 //add item
-function addItem(item)
+async function addItem(item, listId)
 {
-    //list.update(item)
+    let result = '';
+    let itemsArr = list.items;
+    itemsArr.push(item);
+    
+    const affectedRows = 
+    await listModel.List.update({ items: itemsArr }, 
+                                { where: { id: listId } });
+
+    if (affectedRows > 0)
+    {
+        result = "the list was updated!";
+    }
+    else 
+    {
+        result = "couldn't find the list";
+    }
 }
 //remove item
-function rmItem(item)
+function rmItem(item, listId)
 {
-    //list.update(item)
+    let result = '';
+    let itemsArr = list.items;
+    itemsArr.splice(itemsArr.indexOf(item), 1);
+    
+    const affectedRows = 
+    await listModel.List.update({ items: itemsArr }, 
+                                { where: { id: listId } });
+
+    if (affectedRows > 0)
+    {
+        result = "the list was updated!";
+    }
+    else 
+    {
+        result = "couldn't find the list";
+    }
+    return result;
 }
 //clear list
 function clearList(list)
@@ -89,6 +133,9 @@ function rmEditor(user, rmAll)
 function printListInfo(list) 
 {
     let editors = "";
+    //UNFINISHED: come back and edit this to search
+    //through the guild's member list for user tags
+    //for author and all editors
     list.editors.forEach((editor, index) => 
     {
         editors = editors.concat(`\`${editor}\`, `)
@@ -122,7 +169,7 @@ function printItems(itemsArr) //not the final form; printList will change to req
     if (itemsArr.length > 0)
     {
         itemsArr.forEach((item, index) => {
-            output = output.concat(`${index + 1}. ${item}\n`);
+            output = output.concat(`*${index + 1}*. ${item}\n`);
         })
     }
     else 
