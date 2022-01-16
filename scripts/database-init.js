@@ -1,3 +1,5 @@
+//NOTE: THIS REQUIRE NEEDS TO HAVE THE PATH TO .ENV IN ITS CONFIG.
+//otherwise, it simply returns the variables as undefined
 require('dotenv').config({ path: '../.env' });
 const { Sequelize } = require('sequelize');
 
