@@ -2,6 +2,8 @@
 //otherwise, it simply returns the variables as undefined
 require('dotenv').config({ path: '../.env' });
 const { Sequelize } = require('sequelize');
+const usrModel = require('../models/user.js');
+const list = require('../models/list.js');
 
 //console.log(process.env);
 
@@ -13,7 +15,6 @@ const dbname = process.env.DB;
 
 //hosting database locally for testing purposes; change this
 //once ready for deployments
-//const sequelize = new Sequelize(`postgres://${user}:${pass}@localhost:5432/${dbname}`);
 const sequelize = new Sequelize(dbname, user, pass, {
     host: 'localhost',
     dialect: 'postgres'
@@ -26,6 +27,14 @@ const sequelize = new Sequelize(dbname, user, pass, {
     try {
         await sequelize.authenticate();
         console.log('successfully connected to database!');
+        usrModel.createTable(sequelize);
+        //sequelize.sync makes tables for all models, destroying
+        //ones that already exist if it finds it. you probably
+        //don't wanna run this more than once
+
+        await sequelize.sync({ force: true });
+        //once i understand stuff this might be a better option:
+        //https://sequelize.org/master/manual/migrations.html
     }
     catch (err) {
         console.log(err);
@@ -37,3 +46,4 @@ const sequelize = new Sequelize(dbname, user, pass, {
     }
 })();
 
+module.exports = { sequelize };
