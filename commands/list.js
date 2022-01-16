@@ -34,7 +34,7 @@ function addItem(item)
     //list.update(item)
 }
 //remove item
-function rmItem()
+function rmItem(item)
 {
     //list.update(item)
 }
