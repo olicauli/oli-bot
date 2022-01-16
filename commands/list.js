@@ -25,6 +25,11 @@ function showLists(user)
     //author or editor of
 }
 
+function printItems(list)
+{
+    //print out all items on a list
+}
+
 //create list
 function createList(listName)
 {
