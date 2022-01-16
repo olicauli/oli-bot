@@ -27,11 +27,11 @@ List.init
     editors:
     {
         //array of Users
-        type: DataTypes.ARRAY(DataTypes.STRING);
+        type: DataTypes.ARRAY(DataTypes.STRING)
     },
     items:
     {
-        type: DataTypes.ARRAY(DataTypes.STRING);
+        type: DataTypes.ARRAY(DataTypes.STRING)
     }
 }, 
 {
