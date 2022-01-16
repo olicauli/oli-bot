@@ -8,7 +8,7 @@ in server and DM channels.
 
 **frameworks used:**
 
-hythlodaeus is written entirely in javascript using discordJS and node.js.
+hythlodaeus is written entirely in javascript using discordJS and node.js. hythlodaeus also uses a postgresql database, and uses sequelize to manage the lists it creates.
 
 ## table of contents
 - [installation](#installation)
@@ -37,7 +37,10 @@ in order to run the bot, make sure that you have [npm](https://www.npmjs.com/) a
 3. open up a terminal of your choice, navigate to the folder and run the command `npm install`
 4. to run the bot you will need to set up two environment variables: `TOKEN` and `CLIENT_ID`.
    set `TOKEN` to your bot instance's token and `CLIENT_ID` to your bot instance's client id.
-5. once you have set up environment variables, you can run the bot! enter `node app.js` or `node .` in your terminal 
+5. hythlodaeus uses a postgresql database, which it accesses using sequelize. make sure you have a database set up, as well as a user that can create/delete/update
+tables.
+6. set `DB` to your database's name, `DB_USER` to the username you've set up for your bot, and `DB_PASS` to the password for the database user.
+7. once you have set up environment variables, you can run the bot! enter `node app.js` or `node .` in your terminal 
    to launch hythlodaeus.
 
 note: if you want to delete or deploy your own server-specific commands, you will need an additional environment variable:
