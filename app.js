@@ -4,7 +4,7 @@ const fs = require('fs'); //node file system module
 const { Client, Collection, Intents } = require('discord.js');
 
 //environmental variables
-const token = process.env.TOKEN;
+console.log(token);
 
 //import handlers
 const commandHandler = require('./helpers/command-handler.js');

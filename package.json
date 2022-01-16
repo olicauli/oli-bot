@@ -16,6 +16,19 @@
     "@discordjs/rest": "^0.2.0-canary.0",
     "discord-api-types": "^0.26.1",
     "discord.js": "^13.5.1",
-    "dotenv": "^11.0.0"
-  }
+    "dotenv": "^11.0.0",
+    "pg": "^8.7.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.13.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olicauli/oli-bot.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/olicauli/oli-bot/issues"
+  },
+  "homepage": "https://github.com/olicauli/oli-bot#readme"
 }
