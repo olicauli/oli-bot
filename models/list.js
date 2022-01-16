@@ -1,3 +1,4 @@
+/*
 const { Sequelize, DataTypes } = require('sequelize');
 const { User } = require('user.js');
 
@@ -39,3 +40,4 @@ List.init
     sequelize,
     modelName: 'List'
 });
+*/

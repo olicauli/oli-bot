@@ -2,9 +2,10 @@
 require('dotenv').config();
 const fs = require('fs'); //node file system module
 const { Client, Collection, Intents } = require('discord.js');
+const token = process.env.TOKEN;
 
 //environmental variables
-console.log(token);
+//console.log(token);
 
 //import handlers
 const commandHandler = require('./helpers/command-handler.js');

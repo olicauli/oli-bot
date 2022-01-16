@@ -12,16 +12,9 @@ const sequelize = new Sequelize(dbname, user, pass, {
     dialect: 'postgres'
 });
 
-//list lists
-function showLists(user)
+function printLists(user)
 {
-    //return all lists that user is an
-    //author or editor of
-}
-
-function printItems(list)
-{
-    //print out all items on a list
+    //print out all lists user is an author or editor of
 }
 
 //create list
@@ -72,32 +65,29 @@ function rmEditor(user, rmAll)
         //iterate through editors in list and remove them
 }
 
-function printList() //not the final form; printList will change to require args and
+function printItems(itemsArr) //not the final form; printList will change to require args and
                      //change output depending on list contents
 {
-    let output = `**there's nothing on your shopping list!**
-                  
-                  type \`/list add <input>\` to add an item.
-                  the buttons should let you clear or delete the list,
-                  but you may also use \`/list rm <item-number>\`
-                  to delete an item, or \`/list clear\` to clear
-                  the list.`
-    /*
-    if (!list.empty())
+    let output = ""
+    if (itemsArr.length > 0)
     {
-        try 
-        {
-            
-        }
-        catch (err)
-        {
-            console.log(err);
-        }
+        itemsArr.forEach((item, index) => {
+            output = output.concat(`${index + 1}. ${item}\n`);
+        })
     }
-    */
+    else 
+    {
+        output = `**there's nothing on your list!**
+                  
+        type \`/list add <input>\` to add an item.
+        the buttons should let you clear or delete the list,
+        but you may also use \`/list rm <item-number>\`
+        to delete an item, or \`/list clear\` to clear
+        the list.`;
+    }
     
     return output;
 }
 
 
-module.exports = { printList };
+module.exports = { printItems };

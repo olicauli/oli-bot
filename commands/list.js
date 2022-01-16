@@ -36,7 +36,7 @@ module.exports = {
         const listItems = new MessageEmbed()
             .setColor(global.HYTHLO_PINK)
             .setTitle('shopping list')
-            .setDescription(listFunc.printList());
+            .setDescription(listFunc.printItems(["eggs", "milk", "bread"]));
             
         await interaction.editReply({ embeds: [listItems], components: [row] });
     },

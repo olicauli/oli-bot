@@ -11,7 +11,8 @@ const dbname = process.env.DB;
 //once ready for deployments
 const sequelize = new Sequelize(dbname, user, pass, {
     host: 'localhost',
-    dialect: 'postgres'
+    dialect: 'postgres',
+    logging: false
 });
 
 /*
