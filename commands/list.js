@@ -18,6 +18,13 @@ const sequelize = new Sequelize(dbname, user, pass, {
     dialect: 'postgres'
 });
 
+//list lists
+function showLists(user)
+{
+    //return all lists that user is an
+    //author or editor of
+}
+
 //create list
 function createList(listName)
 {
