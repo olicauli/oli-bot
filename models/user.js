@@ -37,11 +37,6 @@ class User extends Model {}
 User.init
 ({
     //model attributes
-    username: 
-    {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
     userid:
     {
         type: DataTypes.STRING,
@@ -56,10 +51,8 @@ User.init
 
 (async () => {
     await sequelize.sync({ force: true });
-    const oli = await User.create({ username: "SuperiorTea",  
-                             userid: "135310222724956160" });
+    const oli = await User.create({ userid: "135310222724956160" });
     console.log(oli.toJSON());
-    console.log(oli.username);
     console.log("oli was saved to the database!");
     oli.username = "olicauli";
     await oli.save();

@@ -20,14 +20,14 @@ List.init
         type: DataTypes.STRING,
         allowNull: false
     },
-    author: 
+    authorId: 
     {
-        //type: User,
+        type: DataTypes.STRING,
         allowNull: false
     },
     editors:
     {
-        //array of Users
+        //array of user ids
         type: DataTypes.ARRAY(DataTypes.STRING)
     },
     items:

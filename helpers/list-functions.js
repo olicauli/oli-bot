@@ -2,9 +2,10 @@ const pass = process.env.DB_PASS;
 const user = process.env.DB_USER
 const dbname = process.env.DB;
 
-const { Sequelize } = require('sequelize');
+const { Sequelize, Op } = require('sequelize');
 const usrModel = require('../models/user.js');
-const list = require('../models/list.js');
+const listModel = require('../models/list.js');
+const { RequestManager } = require('@discordjs/rest');
 
 //database
 const sequelize = new Sequelize(dbname, user, pass, {
@@ -12,20 +13,40 @@ const sequelize = new Sequelize(dbname, user, pass, {
     dialect: 'postgres'
 });
 
-function printLists(user)
-{
-    //print out all lists user is an author or editor of
-}
-
 //create list
-function createList(listName)
+// /list create <name> <editors (optional)> <items (optional)>
+async function createList(listName, editors, items)
 {
-    //list.create({ name: listName })
+    if (listName == undefined)
+    {
+        return "error: no list name provided!";
+    }
+
+    let editorsArr = [];
+
+    if (editors == undefined) editors = null;
+    else 
+    {
+        //populate editorsArr
+    }
+
+    let itemsArr = [];
+
+    if (items == undefined) items = null;
+    else 
+    {
+        //populate itemsArr
+    }
+
+
+    await listModel.List.create({ name: listName, 
+                  editors: editorsArr,
+                  items: itemsArr });
 }
 //delete list
-function deleteList(list)
+async function deleteList(list)
 {
-    //list.delete();
+    await list.destroy();
 }
 //add item
 function addItem(item)
@@ -63,6 +84,35 @@ function rmEditor(user, rmAll)
         //  "user was not found."
     //else
         //iterate through editors in list and remove them
+}
+
+function printListInfo(list) 
+{
+    let editors = "";
+    list.editors.forEach((editor, index) => 
+    {
+        editors = editors.concat(`\`${editor}\`, `)
+    });
+
+    return `list name: ${list.name}
+            list id: ${list.id}
+            list creator: ${list.authorId}:
+            users with list access: ${editors}`;
+}
+
+//user is a discordjs User class
+//https://discord.js.org/#/docs/discord.js/stable/class/User
+function printAllLists(user)
+{
+    //find all lists user is an author of
+    listModel.Lists.findAll({
+        where: 
+        {
+            authorId: user.id
+        }
+    })
+
+    //print the lists' names, 
 }
 
 function printItems(itemsArr) //not the final form; printList will change to require args and
