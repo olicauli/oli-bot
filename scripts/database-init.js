@@ -27,7 +27,6 @@ const sequelize = new Sequelize(dbname, user, pass, {
     try {
         await sequelize.authenticate();
         console.log('successfully connected to database!');
-        usrModel.createTable(sequelize);
         //sequelize.sync makes tables for all models, destroying
         //ones that already exist if it finds it. you probably
         //don't wanna run this more than once

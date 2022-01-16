@@ -1,9 +1,21 @@
 const { Sequelize, DataTypes, Model } = require('sequelize');
 require('dotenv').config({ path: '../.env' });
 
-function createTable(sequelize) 
-{
-    const User = sequelize.define('User', 
+const pass = process.env.DB_PASS;
+const user = process.env.DB_USER
+const dbname = process.env.DB;
+
+//console.log(`pass: ${pass}\nuser: ${user}\ndbname: ${dbname}`);
+
+//hosting database locally for testing purposes; change this
+//once ready for deployments
+const sequelize = new Sequelize(dbname, user, pass, {
+    host: 'localhost',
+    dialect: 'postgres'
+});
+
+/*
+const User = sequelize.define('User', 
     {
         username: 
         {
@@ -15,17 +27,10 @@ function createTable(sequelize)
             type: DataTypes.STRING,
             allowNull: false
         }
-    });
-}
-
-//get this working so i can add instance level methods
-/*
-const sequelize = new Sequelize(dbname, user, pass, {
-    host: 'localhost',
-    dialect: 'postgres'
-});
+    }
+);
 */
-/*
+
 class User extends Model {}
 
 User.init
@@ -47,7 +52,19 @@ User.init
     sequelize,
     modelName: 'User'
 });
-*/
+
+(async () => {
+    await sequelize.sync({ force: true });
+    const oli = await User.create({ username: "SuperiorTea",  
+                             userid: "135310222724956160" });
+    console.log(oli.toJSON());
+    console.log(oli.username);
+    console.log("oli was saved to the database!");
+    oli.username = "olicauli";
+    await oli.save();
+    console.log(oli.toJSON());
+    await oli.destroy();
+})();
 
 
-module.exports = { createTable };
+//module.exports = { createTable };
