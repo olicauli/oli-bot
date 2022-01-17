@@ -89,7 +89,9 @@ all current possible commands are listed below.
 
 `list rm <name> <item>` - removes an item called `<item>` from a list called `<name>`
 
-notes:
+**note:** currently, only the author of a list can modify it.
+additionally, duplicate lists (lists with the same name) are not currently allowed.
+these are limitations that will hopefully be examined and changed in later builds of hythlodaeus.
 
 ### messages:
 
