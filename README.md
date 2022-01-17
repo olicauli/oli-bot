@@ -41,7 +41,7 @@ in order to run the bot, make sure that you have [npm](https://www.npmjs.com/) a
    set `TOKEN` to your bot instance's token and `CLIENT_ID` to your bot instance's client id.
 5. hythlodaeus uses a postgresql database, which it accesses using sequelize. make sure you have a database set up, as well as a user that can create/delete/update
 tables.
-6. set `DB` to your database's name, `DB_USER` to the username you've set up for your bot, and `DB_PASS` to the password for the database user.
+6. set `DATABASE_URL` to your database's URL.
 7. once you have set up environment variables, you can run the bot! enter `node app.js` or `node .` in your terminal 
    to launch hythlodaeus.
 
