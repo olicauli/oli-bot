@@ -27,6 +27,10 @@ module.exports = {
             .setDescription('get information on how to use /list'))
         .addSubcommand(subcommand => 
             subcommand
+            .setName('all')
+            .setDescription('view all lists currently in the database'))
+        .addSubcommand(subcommand => 
+            subcommand
             .setName('view')
             .setDescription('view a list')
             .addStringOption(option =>

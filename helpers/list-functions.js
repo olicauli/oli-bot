@@ -113,25 +113,24 @@ async function setItem(list, item, option)
     }
 }
 
-function printListInfo(list) 
+function getListInfo(list) 
 {
-    //let editors = "";
-    //UNFINISHED: come back and edit this to search
-    //through the guild's member list for user tags
-    //for author and all editors
-    /*
-    list.editors.forEach((editor, index) => 
-    {
-        editors = editors.concat(`\`${editor}\`, `)
-    });
-    */
-
     return `list name: ${list.name}
             list id: ${list.id}
             list creator: ${list.authorId}`;
 }
 
-function getListEmbed(list) //not the final form; printList will change to require args and
+function getAllListsEmbed(lists)
+{
+    const embed = new MessageEmbed()
+            .setColor(global.HYTHLO_PINK)
+            .setTitle(`all lists in the database:`)
+            .setDescription(lists);
+
+    return embed;
+}
+
+function getListViewEmbed(list) //not the final form; printList will change to require args and
                      //change output depending on list contents
 {
     //a button row; currently unused, as we currently don't have
@@ -178,9 +177,9 @@ function getListEmbed(list) //not the final form; printList will change to requi
     const listEmbed = new MessageEmbed()
     .setColor(global.HYTHLO_PINK)
     .setTitle(`your ${list.name} list`)
-    .setDescription(desc);
+    .setDescription(desc)
+    .addField( 'other list info',  getListInfo(list) );
 
-    
     return listEmbed;
 }
 
@@ -213,4 +212,4 @@ function getHelpEmbed()
 }
 
 
-module.exports = { getListEmbed, createList, setItem, deleteList, getHelpEmbed };
+module.exports = { getListViewEmbed, getAllListsEmbed, createList, setItem, deleteList, getHelpEmbed };

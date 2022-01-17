@@ -1,13 +1,10 @@
-const { MessageEmbed, MessageActionRow, MessageButton} = require('discord.js');
-//const fs = require('fs'); //node file system module
 const listFunc = require('../helpers/list-functions.js');
 const listModel = require('../models/list.js');
 const feedbackMsgs = require('../helpers/command-feedback-msgs.js');
-const list = require('../commands/list.js');
 
-async function hasPerms(user, authorOfList)
+function hasPerms(user, authorOfList)
 {
-    return authorOfList === user;
+    return authorOfList == user;
 }
 
 async function handleLists(interaction)
@@ -31,39 +28,25 @@ async function handleLists(interaction)
 
         //if the list exists, print it
         if (list)
-        {
-            //a button row; currently unused, as we currently don't have
-            //a button handler.
-            /*
-            const row = new MessageActionRow()
-            .addComponents
-            (
-                
-                new MessageButton()
-                .setCustomId('add')
-                .setLabel('add item')
-                .setStyle('SUCCESS'),
-                
-                new MessageButton()
-                .setCustomId('remove')
-                .setLabel('remove item')
-                .setStyle('DANGER'),
-                
-                new MessageButton()
-                .setCustomId('clear')
-                .setLabel('clear shopping list')
-                .setStyle('SECONDARY'),
-            );
-            */
-            
-            let listEmbed = listFunc.getListEmbed(list)
-            await interaction.editReply({ embeds: [listEmbed], /*components: [row]*/ });
+        {    
+            let listEmbed = listFunc.getListViewEmbed(list)
+            await interaction.editReply({ embeds: [listEmbed] });
         }
         else 
         {
             console.log('list doesnt exist!');
             interaction.editReply({ embeds: [feedbackMsgs.errorEmbed('list nonexistent')] });
         }
+    }
+    else if (subCommand === 'all')
+    {
+        const listNames = await listModel.List.findAll({ attributes: ['name'] });
+        const listString = listNames.map(list => list.name).join(', ') 
+        || `there are no lists in the database!
+            create a list with \`/list create <name>\`.`;
+
+        listAllEmbed = listFunc.getAllListsEmbed(listString);
+        interaction.editReply({ embeds: [listAllEmbed] });
     }
     else if (subCommand === 'create')
     {
@@ -105,7 +88,7 @@ async function handleLists(interaction)
 
         if (list)
         {
-            if (!hasPerms(interaction.user.id, list.authorId))
+            if (!(hasPerms(interaction.user.id, list.authorId)))
             {
                 console.log("error! insufficient edit permissions");
                 interaction.editReply({ embeds: [feedbackMsgs.errorEmbed('edit disallowed')] });
@@ -143,7 +126,7 @@ async function handleLists(interaction)
         //add item if list exists
         if (list)
         {
-            if (!hasPerms(interaction.user.id, list.authorId))
+            if (!(hasPerms(interaction.user.id, list.authorId)))
             {
                 console.log("error! insufficient edit permissions");
                 interaction.editReply({ embeds: [feedbackMsgs.errorEmbed('edit disallowed')] });
