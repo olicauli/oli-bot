@@ -7,17 +7,25 @@ const list = require('../models/list.js');
 
 //console.log(process.env);
 
+/*
 const pass = process.env.DB_PASS;
 const user = process.env.DB_USER
 const dbname = process.env.DB;
 
-//console.log(`pass: ${pass}\nuser: ${user}\ndbname: ${dbname}`);
-
-//hosting database locally for testing purposes; change this
-//once ready for deployments
 const sequelize = new Sequelize(dbname, user, pass, {
     host: 'localhost',
     dialect: 'postgres'
+});
+*/
+
+sequelize = new Sequelize(process.env.DATABASE_URL, {
+    dialectOptions: {
+        ssl: {
+            require: true,
+            rejectUnauthorized: false
+        }
+    },
+    logging: false
 });
 
 //console.log('before async');

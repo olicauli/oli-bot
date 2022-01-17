@@ -1,6 +1,7 @@
 require('dotenv').config({ path: '../.env' });
 const { Sequelize, Model, DataTypes } = require('sequelize');
 
+/*
 const pass = process.env.DB_PASS;
 const user = process.env.DB_USER
 const dbname = process.env.DB;
@@ -8,6 +9,16 @@ const dbname = process.env.DB;
 const sequelize = new Sequelize(dbname, user, pass, {
     host: 'localhost',
     dialect: 'postgres',
+    logging: false
+});
+*/
+sequelize = new Sequelize(process.env.DATABASE_URL, {
+    dialectOptions: {
+        ssl: {
+            require: true,
+            rejectUnauthorized: false
+        }
+    },
     logging: false
 });
 

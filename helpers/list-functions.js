@@ -1,16 +1,27 @@
 require('dotenv').config({ path: '../.env' });
 const { MessageEmbed } = require('discord.js');
-const pass = process.env.DB_PASS;
-const user = process.env.DB_USER
-const dbname = process.env.DB;
-
 const { Sequelize } = require('sequelize');
 const listModel = require('../models/list.js');
 
 //database
+/*
+const pass = process.env.DB_PASS;
+const user = process.env.DB_USER
+const dbname = process.env.DB;
+
 const sequelize = new Sequelize(dbname, user, pass, {
     host: 'localhost',
     dialect: 'postgres',
+    logging: false
+});
+*/
+sequelize = new Sequelize(process.env.DATABASE_URL, {
+    dialectOptions: {
+        ssl: {
+            require: true,
+            rejectUnauthorized: false
+        }
+    },
     logging: false
 });
 
