@@ -116,8 +116,7 @@ async function setItem(list, item, option)
 function getListInfo(list) 
 {
     return `list name: ${list.name}
-            list id: ${list.id}
-            list creator: ${list.authorId}`;
+            list id: ${list.id}`;
 }
 
 function getAllListsEmbed(lists)

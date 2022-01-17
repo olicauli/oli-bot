@@ -54,6 +54,8 @@ as he was not written to respond to commands with any other prefix.
 all current possible commands are listed below.
 
 ### commands: 
+
+#### general commands
 `/about` - lists a short introduction about hythlodaeus containing the creator's
          discord tag (to be changed to github username in the future) and the 
          current version that is being run.
@@ -66,16 +68,18 @@ all current possible commands are listed below.
 
 `/server` - replies with the server name, id, description, creation date, and total members.
           if DMed this command, hythlodaeus will reply back with an error message.
-          
-`/list` - WIP, DOES NOT WORK - a command that allows users to view add, remove, or clear items from
-                       a shopping list. because i am a baby
-                       i haven't currently integrated the database for this yet, so this command
-                       is almost entirely nonfunctional. will reply telling the user that the 
-                       shopping list is empty.
 
 `/user` - replies with the user's nickname (or username if there is none), the user's tag,
         when the user joined the server (if executed in a discord server), and whether
         the user is a bot or not.
+
+#### list commands
+
+`list create <name>` - creates a new list called `<name>`
+`list delete <name>` - deletes an existing list called `<name>`
+`list all` - displays the names of all the lists currently stored in the database.
+`list add <name> <item>` - adds an item called `<item>` to a list called `<name>`.
+`list rm <name> <item>` - removes an item called `<item>` from a list called `<name>`
 
 ### messages:
 
