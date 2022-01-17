@@ -10,7 +10,6 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('list')
         .setDescription('view/add/remove stuff on the shopping list (WIP)')
-        
         .addSubcommand(subcommand => 
             subcommand
             .setName('rm')
@@ -50,7 +49,13 @@ module.exports = {
             .addStringOption(option =>
                 option.setName('name')
                 .setDescription('the name of the list you want to change')
-                .setRequired(true))),
+                .setRequired(true)))
+            .addStringOption(option => 
+                option.setName('editors')
+                .setDescription('users who are allowed to add or remove from the list'))
+            .addStringOption(option => 
+                option.setName('items')
+                .setDescription('the items to populate the newly created list with, separated by commas')),
     async execute(interaction) {
         await interaction.deferReply();
         const row = new MessageActionRow()

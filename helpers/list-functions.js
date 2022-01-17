@@ -20,6 +20,7 @@ async function createList(listName, editors, items, author)
 {
     if (listName == undefined)
     {
+        console.log("listname undefined");
         return "error: no list name provided!";
     }
 
@@ -28,6 +29,7 @@ async function createList(listName, editors, items, author)
     if (editors == undefined) editors = null;
     else 
     {
+        console.log("populate editorsArr");
         //populate editorsArr
     }
 
@@ -36,15 +38,17 @@ async function createList(listName, editors, items, author)
     if (items == undefined) items = null;
     else 
     {
+        console.log("populate itemsArr");
         //populate itemsArr
     }
 
     try 
     {
-        await listModel.List.create({ name: listName, 
+        const newList = await listModel.List.create({ name: listName, 
             authorId: author,
             editors: editorsArr,
             items: itemsArr });
+        console.log(newList.toJSON());
     }
     catch (error)
     {

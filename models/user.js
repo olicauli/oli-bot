@@ -51,6 +51,7 @@ User.init
 
 (async () => {
     await sequelize.sync({ force: true });
+    /*
     const oli = await User.create({ userid: "135310222724956160" });
     console.log(oli.toJSON());
     console.log("oli was saved to the database!");
@@ -58,6 +59,7 @@ User.init
     await oli.save();
     console.log(oli.toJSON());
     await oli.destroy();
+    */
 })();
 
 
