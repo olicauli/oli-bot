@@ -49,53 +49,100 @@ async function handleLists(interaction)
         }
         else 
         {
-            interaction.editReply({ embeds: [feedbackMsgs.errorEmbed()] });
+            console.log('list doesnt exist!');
+            interaction.editReply({ embeds: [feedbackMsgs.errorEmbed('list nonexistent')] });
         }
     }
     else if (subCommand === 'create')
     {
-        console.log('in create');
+        //get options
         let listName = await interaction.options.getString('name', true);
-        let userId = await interaction.user.id;
-        listFunc.createList(listName, userId)
-        .then(() =>
+        //check if list already exists
+        const list = await listModel.List.findOne({ where: { name: listName } });
+        if (!list)
         {
-            interaction.editReply({ embeds: [feedbackMsgs.successEmbed('list create')] });
-            //console.log("in then");
-        })
-        .catch(err =>
+            let userId = await interaction.user.id;
+            listFunc.createList(listName, userId)
+            .then(() =>
             {
-                //console.log('in catch');
-                console.log(err); //log the error, then display the error message
-
-                interaction.editReply({ embeds: [feedbackMsgs.errorEmbed()] });
-            });
+                interaction.editReply({ embeds: [feedbackMsgs.successEmbed('list create')] });
+                //console.log("in then");
+            })
+            .catch(err =>
+                {
+                    //console.log('in catch');
+                    console.log(err); //log the error, then display the error message
+    
+                    interaction.editReply({ embeds: [feedbackMsgs.errorEmbed()] });
+                });
+        }
+        else 
+        {
+            console.log('list already exists!');
+            interaction.editReply({ embeds: [feedbackMsgs.errorEmbed('list exists')] });
+        }
+        
     }
     else if (subCommand == 'delete')
     {
-        //listFunc.deleteList();
+        //get options
+        let listName = await interaction.options.getString('name', true);
+        //get list
+        const list = await listModel.List.findOne({ where: { name: listName } });
+
+        if (list)
+        {
+            listFunc.deleteList(list)
+            .then(() => 
+            {
+                interaction.editReply({ embeds: [feedbackMsgs.successEmbed('list delete')] });
+            })
+            .catch(err =>
+                {
+                    console.log(err); //log the error, then display the error message
+    
+                    interaction.editReply({ embeds: [feedbackMsgs.errorEmbed()] });
+                });
+        }
+        else 
+        {
+            console.log('list doesnt exist!');
+            interaction.editReply({ embeds: [feedbackMsgs.errorEmbed('list nonexistent')] });
+        }
     }
-    else if (subCommand === 'add')
+    //the logic for adding or removing commands is almost identical,
+    //so they both get one if statement
+    else if (subCommand === 'add' || subCommand === 'rm')
     {
         //get the options
-        let listName = await interaction.options.getString('list-name', true);
+        let listName = await interaction.options.getString('name', true);
         let item = await interaction.options.getString('item', true);
         //get the list
         const list = await listModel.List.findOne({ where: { name: listName } });
+        console.log(list);
 
-        //add the item
-        listFunc.setItem(list, item, 'add');
-    }
-    else if (subCommand === 'rm')
-    {
-        //get the options
-        let listName = await interaction.options.getString('list-name', true);
-        let item = await interaction.options.getString('item', true);
-        //get the list
-        const list = await listModel.List.findOne({ where: { name: listName } });
-
-        //add the item
-        listFunc.setItem(list, item, 'rm');
+        //add item if list exists
+        if (list)
+        {
+            listFunc.setItem(list, item, subCommand)
+            .then(() => 
+            {
+                const msg = 'list '.concat(subCommand);
+                console.log(msg);
+                interaction.editReply({ embeds: [feedbackMsgs.successEmbed(msg)] });
+            })
+            .catch(err =>
+            {
+                console.log(err); //log the error, then display the error message
+    
+                interaction.editReply({ embeds: [feedbackMsgs.errorEmbed()] });
+            });
+        }
+        else //if list doesnt exist, throw an error
+        {
+            console.log('list doesnt exist!');
+            interaction.editReply({ embeds: [feedbackMsgs.errorEmbed('list nonexistent')] });
+        }
     }
 }
 

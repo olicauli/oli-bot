@@ -56,13 +56,30 @@ async function createList(listName, author)
 //delete list
 async function deleteList(list)
 {
-    await list.destroy();
+    try 
+    {
+        await listModel.List.destroy( 
+            { where: { name: list.name } });
+        return Promise.resolve();
+    }
+    catch (err)
+    {
+        console.log('error! command failed');
+        return Promise.reject(err);
+    }
 }
 
 //add or remove an item
 async function setItem(list, item, option)
 {
-    let itemsArr = list.items;
+    if (list.items === null)
+    {
+        itemsArr = [];
+    }
+    else 
+    {
+        itemsArr = list.items;
+    }
     try 
     {
         if (option === 'add') itemsArr.push(item);
@@ -76,7 +93,7 @@ async function setItem(list, item, option)
         
         const affectedRows = 
         await listModel.List.update({ items: itemsArr }, 
-                                    { where: { id: listId } });
+                                    { where: { name: list.name } });
     
         if (affectedRows > 0)
         {
@@ -89,9 +106,10 @@ async function setItem(list, item, option)
             return Promise.reject();
         }
     }
-    catch 
+    catch (err)
     {
         console.log('error! command failed');
+        console.log(err)
         return Promise.reject(err);
     }
 }

@@ -43,7 +43,7 @@ List.init
 });
 
 (async () => {
-    await sequelize.sync({ force: true }); //remove force: true before deployment
+    await sequelize.sync();
 })();
 
 module.exports = { List };

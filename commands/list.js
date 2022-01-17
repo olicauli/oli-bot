@@ -34,7 +34,7 @@ module.exports = {
             .setName('rm')
             .setDescription('remove an item from a list')
             .addStringOption(option =>
-                option.setName('list-name')
+                option.setName('name')
                 .setDescription('the name of the list you want to change')
                 .setRequired(true))
             .addStringOption(option =>
@@ -46,7 +46,7 @@ module.exports = {
             .setName('add')
             .setDescription('add an item to a list')
             .addStringOption(option =>
-                option.setName('list-name')
+                option.setName('name')
                 .setDescription('the name of the list you want to change')
                 .setRequired(true))
             .addStringOption(option =>
@@ -58,8 +58,8 @@ module.exports = {
             .setName('delete')
             .setDescription('delete a list that you own')
             .addStringOption(option =>
-                option.setName('id')
-                .setDescription('the id of the list you want to change')
+                option.setName('name')
+                .setDescription('the name of the list you want to delete')
                 .setRequired(true)))
         .addSubcommand(subcommand => 
             subcommand
