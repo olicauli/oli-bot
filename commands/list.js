@@ -1,16 +1,26 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { InteractionResponseType } = require('discord-api-types');
-const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
+const { MessageEmbed, MessageActionRow, MessageButton, IntegrationApplication } = require('discord.js');
 const fs = require('fs'); //node file system module
 const listFunc = require('../helpers/list-functions.js');
 
 //console.log(process.env);
 
 module.exports = {
-    //user info
+    //this whole block is simply building the commands.
+    //we have view, rm, add, delete, and create
+    //subcommands.
     data: new SlashCommandBuilder()
         .setName('list')
         .setDescription('view/add/remove stuff on the shopping list (WIP)')
+        .addSubcommand(subcommand => 
+            subcommand
+            .setName('view')
+            .setDescription('view a list')
+            .addStringOption(option =>
+                option.setName('name')
+                .setDescription('the name of the list you want to view')
+                .setRequired(true)))
         .addSubcommand(subcommand => 
             subcommand
             .setName('rm')
@@ -53,7 +63,12 @@ module.exports = {
                 .setRequired(true))),
     async execute(interaction) {
         await interaction.deferReply();
-        const row = new MessageActionRow()
+        
+        let subCommand = interaction.options.getSubcommand();
+        //handle subcommands
+        if (subCommand === 'view') 
+        {
+            const row = new MessageActionRow()
             .addComponents
             (
                 /*
@@ -73,14 +88,28 @@ module.exports = {
                 .setLabel('clear shopping list')
                 .setStyle('SECONDARY'),
             );
-            
-        const listItems = new MessageEmbed()
+
+            const listItems = new MessageEmbed()
             .setColor(global.HYTHLO_PINK)
             .setTitle('shopping list')
             .setDescription(listFunc.printItems(["eggs", "milk", "bread"]));
-            
-        await interaction.
-
-        await interaction.editReply({ embeds: [listItems], components: [row] });
+            await interaction.editReply({ embeds: [listItems], components: [row] });
+        }
+        else if (subCommand === 'create')
+        {
+            listFunc.createList('test');
+        }
+        else if (subCommand == 'delete')
+        {
+            //listFunc.deleteList();
+        }
+        else if (subCommand === 'add')
+        {
+            listFunc.addItem('test item', 1);
+        }
+        else if (subCommand === 'rm')
+        {
+            listFunc.rmItem('test item', 1);
+        }
     },
 };

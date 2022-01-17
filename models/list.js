@@ -1,6 +1,5 @@
-/*
-const { Sequelize, DataTypes } = require('sequelize');
-const { User } = require('user.js');
+require('dotenv').config({ path: '../.env' });
+const { Sequelize, Model, DataTypes } = require('sequelize');
 
 const pass = process.env.DB_PASS;
 const user = process.env.DB_USER
@@ -40,4 +39,9 @@ List.init
     sequelize,
     modelName: 'List'
 });
-*/
+
+(async () => {
+    await sequelize.sync({ force: true });
+})();
+
+module.exports = { List };

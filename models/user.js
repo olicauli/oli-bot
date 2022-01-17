@@ -12,7 +12,6 @@ const dbname = process.env.DB;
 const sequelize = new Sequelize(dbname, user, pass, {
     host: 'localhost',
     dialect: 'postgres',
-    logging: false
 });
 
 /*

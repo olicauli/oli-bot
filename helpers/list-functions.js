@@ -1,3 +1,4 @@
+require('dotenv').config({ path: '../.env' });
 const pass = process.env.DB_PASS;
 const user = process.env.DB_USER
 const dbname = process.env.DB;
@@ -195,4 +196,4 @@ function printItems(itemsArr) //not the final form; printList will change to req
 }
 
 
-module.exports = { printItems };
+module.exports = { printItems, createList, rmItem, addItem, deleteList };
