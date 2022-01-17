@@ -24,11 +24,13 @@ List.init
         type: DataTypes.STRING,
         allowNull: false
     },
-    editors:
+    /*
+    editors: //future feature: add later
     {
         //array of user ids
         type: DataTypes.ARRAY(DataTypes.STRING)
     },
+    */
     items:
     {
         type: DataTypes.ARRAY(DataTypes.STRING)
@@ -41,7 +43,7 @@ List.init
 });
 
 (async () => {
-    await sequelize.sync({ force: true });
+    await sequelize.sync({ force: true }); //remove force: true before deployment
 })();
 
 module.exports = { List };

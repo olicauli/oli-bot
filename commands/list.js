@@ -67,13 +67,13 @@ module.exports = {
             .setDescription('create a new list')
             .addStringOption(option =>
                 option.setName('name')
-                .setDescription('the name of the list you want to change')
+                .setDescription('the name of the list you want to create')
                 .setRequired(true))),
     async execute(interaction) {
         await interaction.deferReply();
         
         //handleLists checks what subcommand has been used, and executes
-        //listfunctions/handles errors depending on the input.
+        //list functions/handles errors depending on the input.
         listHandler.handleLists(interaction);
     },
 };

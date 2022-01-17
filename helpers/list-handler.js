@@ -7,19 +7,19 @@ async function handleLists(interaction)
 {
     //let subCommand = 'view';
     let subCommand = interaction.options.getSubcommand();
-    console.log(subCommand);
+    let option = interaction.options.getString();
+    console.log(`subCommand: ${subCommand}\noption: ${option}`);
     //handle subcommands
     if (subCommand === 'view') 
     {
         const row = new MessageActionRow()
         .addComponents
         (
-            /*
+            
             new MessageButton()
             .setCustomId('add')
             .setLabel('add item')
             .setStyle('SUCCESS'),
-            */
             
             new MessageButton()
             .setCustomId('remove')

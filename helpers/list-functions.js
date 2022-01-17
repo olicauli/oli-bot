@@ -16,8 +16,8 @@ const sequelize = new Sequelize(dbname, user, pass, {
 });
 
 //create list
-// /list create <name> <editors (optional)> <items (optional)>
-async function createList(listName, editors, items, author)
+// /list create <list name>
+async function createList(listName, author)
 {
     console.log('in list-functions create list');
     if (listName == undefined)
@@ -26,6 +26,9 @@ async function createList(listName, editors, items, author)
         return "error: no list name provided!";
     }
 
+    //editors and items are not currently implemented options,
+    //so this code is unused for now
+    /*
     let editorsArr = [];
 
     if (editors == undefined) editors = null;
@@ -43,14 +46,16 @@ async function createList(listName, editors, items, author)
         console.log("populate itemsArr");
         //populate itemsArr
     }
+    */
 
     try 
     {
         console.log("in try");
         const newList = await listModel.List.create({ name: listName, 
             authorId: author,
-            editors: editorsArr,
-            items: itemsArr });
+            //editors: null, //editors is a future feature
+            //items: null //creating with items is a future feature
+            });
         console.log(newList.toJSON());
         return Promise.resolve();
     }
@@ -76,43 +81,59 @@ async function deleteList(list)
 //add item
 async function addItem(item, listId)
 {
-    let result = '';
     let itemsArr = list.items;
-    itemsArr.push(item);
+    try 
+    {
+        itemsArr.push(item);
+        const affectedRows = 
+        await listModel.List.update({ items: itemsArr }, 
+                                    { where: { id: listId } });
     
-    const affectedRows = 
-    await listModel.List.update({ items: itemsArr }, 
-                                { where: { id: listId } });
-
-    if (affectedRows > 0)
-    {
-        result = "the list was updated!";
+        if (affectedRows > 0)
+        {
+            console.log("the list was updated!");
+            return Promise.resolve();
+        }
+        else 
+        {
+            console.log("couldn't find the list");
+            return Promise.reject();
+        }
     }
-    else 
+    catch 
     {
-        result = "couldn't find the list";
+        console.log('error! command failed');
+        return Promise.reject(err);
     }
 }
 //remove item
 async function rmItem(item, listId)
 {
-    let result = '';
     let itemsArr = list.items;
-    itemsArr.splice(itemsArr.indexOf(item), 1);
+    try 
+    {
+        itemsArr.splice(itemsArr.indexOf(item), 1);
+        const affectedRows = 
+        await listModel.List.update({ items: itemsArr }, 
+                                    { where: { id: listId } });
     
-    const affectedRows = 
-    await listModel.List.update({ items: itemsArr }, 
-                                { where: { id: listId } });
-
-    if (affectedRows > 0)
-    {
-        result = "the list was updated!";
+        if (affectedRows > 0)
+        {
+            console.log("the list was updated!");
+            return Promise.resolve();
+        }
+        else 
+        {
+            console.log("couldn't find the list");
+            return Promise.reject();
+        }
     }
-    else 
+    catch 
     {
-        result = "couldn't find the list";
+        console.log('error! command failed');
+        return Promise.reject(err);
     }
-    return result;
+    
 }
 /*
 //clear list
@@ -146,19 +167,20 @@ function rmEditor(user, rmAll)
 
 function printListInfo(list) 
 {
-    let editors = "";
+    //let editors = "";
     //UNFINISHED: come back and edit this to search
     //through the guild's member list for user tags
     //for author and all editors
+    /*
     list.editors.forEach((editor, index) => 
     {
         editors = editors.concat(`\`${editor}\`, `)
     });
+    */
 
     return `list name: ${list.name}
             list id: ${list.id}
-            list creator: ${list.authorId}:
-            users with list access: ${editors}`;
+            list creator: ${list.authorId}`;
 }
 
 /*
