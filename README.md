@@ -13,8 +13,10 @@ hythlodaeus is written entirely in javascript using discordJS and node.js. hythl
 ## table of contents
 - [installation](#installation)
 - [usage (commands)](#usage)
+   * [general commands](#general)
+   * [list commands](#lists)
 - [support](#support)
-- [to-do list](#to-do-)
+- [to-do list](#to-do)
 - [contributions](#contributions)
 - [license](#license)
 
@@ -55,7 +57,7 @@ all current possible commands are listed below.
 
 ### commands: 
 
-#### general commands
+#### general
 `/about` - lists a short introduction about hythlodaeus containing the creator's
          discord tag (to be changed to github username in the future) and the 
          current version that is being run.
@@ -73,7 +75,7 @@ all current possible commands are listed below.
         when the user joined the server (if executed in a discord server), and whether
         the user is a bot or not.
 
-#### list commands
+#### lists
 
 `list help` - displays information about all list subcommands
 
