@@ -27,28 +27,6 @@ async function createList(listName, author)
         return "error: no list name provided!";
     }
 
-    //editors and items are not currently implemented options,
-    //so this code is unused for now
-    /*
-    let editorsArr = [];
-
-    if (editors == undefined) editors = null;
-    else 
-    {
-        console.log("populate editorsArr");
-        //populate editorsArr
-    }
-
-    let itemsArr = [];
-
-    if (items == undefined) items = null;
-    else 
-    {
-        console.log("populate itemsArr");
-        //populate itemsArr
-    }
-    */
-
     try 
     {
         console.log("in try");
@@ -74,11 +52,13 @@ async function createList(listName, author)
         return Promise.reject(err);
     }
 }
+
 //delete list
 async function deleteList(list)
 {
     await list.destroy();
 }
+
 //add or remove an item
 async function setItem(item, listId, option)
 {
@@ -115,66 +95,6 @@ async function setItem(item, listId, option)
         return Promise.reject(err);
     }
 }
-//remove item
-/*
-async function rmItem(item, listId)
-{
-    let itemsArr = list.items;
-    try 
-    {
-        itemsArr.splice(itemsArr.indexOf(item), 1);
-        const affectedRows = 
-        await listModel.List.update({ items: itemsArr }, 
-                                    { where: { id: listId } });
-    
-        if (affectedRows > 0)
-        {
-            console.log("the list was updated!");
-            return Promise.resolve();
-        }
-        else 
-        {
-            console.log("couldn't find the list");
-            return Promise.reject();
-        }
-    }
-    catch 
-    {
-        console.log('error! command failed');
-        return Promise.reject(err);
-    }
-    
-}
-*/
-/*
-//clear list
-function clearList(list)
-{
-    //iterate through list items, delete them all
-}
-//add editor
-function addEditor(user)
-{
-    //get user's tag
-    //get user's userid
-    //make user instance
-    //add user instance to user array in list
-}
-//remove editor
-function rmEditor(user, rmAll)
-{
-    //if !rmAll
-        //get user's tag
-        //get user's id
-        //make user instance
-        //if (user in list)
-        //  delete user
-        //else
-        //  "user was not found."
-    //else
-        //iterate through editors in list and remove them
-}
-*/
 
 function printListInfo(list) 
 {
@@ -193,23 +113,6 @@ function printListInfo(list)
             list id: ${list.id}
             list creator: ${list.authorId}`;
 }
-
-/*
-//user is a discordjs User class
-//https://discord.js.org/#/docs/discord.js/stable/class/User
-function printAllLists(user)
-{
-    //find all lists user is an author of
-    listModel.Lists.findAll({
-        where: 
-        {
-            authorId: user.id
-        }
-    })
-
-    //print the lists' names, 
-}
-*/
 
 function printItems(itemsArr) //not the final form; printList will change to require args and
                      //change output depending on list contents
