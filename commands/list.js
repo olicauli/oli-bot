@@ -50,13 +50,7 @@ module.exports = {
             .addStringOption(option =>
                 option.setName('name')
                 .setDescription('the name of the list you want to change')
-                .setRequired(true)))
-            .addStringOption(option => 
-                option.setName('editors')
-                .setDescription('users who are allowed to add or remove from the list'))
-            .addStringOption(option => 
-                option.setName('items')
-                .setDescription('the items to populate the newly created list with, separated by commas')),
+                .setRequired(true))),
     async execute(interaction) {
         await interaction.deferReply();
         const row = new MessageActionRow()
