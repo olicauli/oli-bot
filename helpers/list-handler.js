@@ -55,12 +55,9 @@ async function handleLists(interaction)
                 .setStyle('SECONDARY'),
             );
             */
-
-            const listItems = new MessageEmbed()
-            .setColor(global.HYTHLO_PINK)
-            .setTitle(`${listName} list`)
-            .setDescription(listFunc.printList(list));
-            await interaction.editReply({ embeds: [listItems], /*components: [row]*/ });
+            
+            let listEmbed = listFunc.getListEmbed(list)
+            await interaction.editReply({ embeds: [listEmbed], /*components: [row]*/ });
         }
         else 
         {

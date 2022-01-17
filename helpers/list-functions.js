@@ -131,36 +131,64 @@ function printListInfo(list)
             list creator: ${list.authorId}`;
 }
 
-function printList(list) //not the final form; printList will change to require args and
+function getListEmbed(list) //not the final form; printList will change to require args and
                      //change output depending on list contents
 {
-    //get the list items
-    const itemsArr = list.items;
-
-    let output = ""
-    if (itemsArr != null && itemsArr.length > 0)
+    //a button row; currently unused, as we currently don't have
+            //a button handler.
+            /*
+            const row = new MessageActionRow()
+            .addComponents
+            (
+                
+                new MessageButton()
+                .setCustomId('add')
+                .setLabel('add item')
+                .setStyle('SUCCESS'),
+                
+                new MessageButton()
+                .setCustomId('remove')
+                .setLabel('remove item')
+                .setStyle('DANGER'),
+                
+                new MessageButton()
+                .setCustomId('clear')
+                .setLabel('clear shopping list')
+                .setStyle('SECONDARY'),
+            );
+            */
+    
+    let desc = ""
+    if (list.items != null && list.items.length > 0)
     {
-        itemsArr.forEach((item, index) => {
-            output = output.concat(`**${index + 1}**. ${item}\n`);
+        list.items.forEach((item, index) => {
+            desc = desc.concat(`**${index + 1}**. ${item}\n`);
         })
     }
     else 
     {
-        output = `**there's nothing on your list!**
+        desc = `**there's nothing on your list!**
                   
         type \`/list add <item>\` to add an item.
         or \`/list rm <item>\` to delete an item.
         after you update your list, type 
         \`/list view <name>\` to view your updated list!`;
     }
+
+    const listEmbed = new MessageEmbed()
+    .setColor(global.HYTHLO_PINK)
+    .setTitle(`your ${list.name} list`)
+    .setDescription(desc);
+
     
-    return output;
+    return listEmbed;
 }
 
 function getHelpEmbed()
 {
     desc = `**commands**
-            \`/list create <name>\` creates a new list called \`<name>\`.\n
+            \`/list create <name>\` creates a new list called \`<name>\`.
+            *note: all list names must be unique; you cannot have two lists with the same name.*\n
             \`/list delete <name>\` deletes a list called \`<name>\`.\n
             \`/list add <name> <item>\` adds an item called \`<item>\` to a list called \`<name>\`.
             *note: the list you name must exist first in order for the item to be added.*\n
@@ -170,7 +198,12 @@ function getHelpEmbed()
             **other notes**
             in the current build of hythlodaeus, you must be the author of the list in order
             to edit it. however, in the future, olicauli will hopefully add the ability to
-            specify who can and can't edit a list.`;
+            specify who can and can't edit a list. 
+            
+            also, being able to create duplicate lists provided they are made by different authors 
+            is a feature oli is also hoping to add eventually.
+            
+            **i hope you enjoy the functional parts of list for now!**`;
 
     const helpEmbed = new MessageEmbed()
             .setColor(global.HYTHLO_PINK)
@@ -180,4 +213,4 @@ function getHelpEmbed()
 }
 
 
-module.exports = { printList, createList, setItem, deleteList, getHelpEmbed };
+module.exports = { getListEmbed, createList, setItem, deleteList, getHelpEmbed };
