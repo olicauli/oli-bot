@@ -8,7 +8,7 @@ async function handleLists(interaction)
 {
     //let subCommand = 'view';
     let subCommand = await interaction.options.getSubcommand();
-    console.log(`${interaction.user.tag} executed subcommand ${subCommand}!`);
+    console.log(`${interaction.user.tag} executed list subcommand ${subCommand}!`);
     //handle subcommands
     if (subCommand === 'view') 
     {
