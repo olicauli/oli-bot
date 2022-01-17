@@ -1,6 +1,6 @@
 //script taken from the discordJS guide:
 //https://discordjs.guide/creating-your-bot/creating-commands.html#command-deployment-script
-require('dotenv').config();
+require('dotenv').config({ path: '../.env' });
 const fs = require('fs');
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');

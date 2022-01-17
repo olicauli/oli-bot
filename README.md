@@ -1,7 +1,7 @@
 # hythlodaeus: baby's first discord bot
 
 hythlodaeus is a fun little miscellaneous bot i've made for myself because i wanted an
-interactive shopping list (which isn't functional atm) in my personal discord server. since he is my first
+interactive shopping list in my personal discord server. since he is my first
 bot of any kind he is very bare-bones at the moment, and only contains a few 
 commands. commands haven't been thoroughly tested yet, but they *should* work
 in server and DM channels.
@@ -75,11 +75,20 @@ all current possible commands are listed below.
 
 #### list commands
 
+`list help` - displays all list subcommands
+
 `list create <name>` - creates a new list called `<name>`
+
 `list delete <name>` - deletes an existing list called `<name>`
+
+`list view <name>` - displays the contents of a list called `<name>`.
+
 `list all` - displays the names of all the lists currently stored in the database.
+
 `list add <name> <item>` - adds an item called `<item>` to a list called `<name>`.
+
 `list rm <name> <item>` - removes an item called `<item>` from a list called `<name>`
+
 
 ### messages:
 

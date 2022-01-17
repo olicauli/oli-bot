@@ -1,8 +1,9 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 //const { InteractionResponseType } = require('discord-api-types');
-const { MessageEmbed, MessageActionRow, MessageButton} = require('discord.js');
-const fs = require('fs'); //node file system module
+const { MessageEmbed } = require('discord.js');
+//const fs = require('fs'); //node file system module
 const listHandler = require('../helpers/list-handler.js');
+const guildGuard = require('../helpers/guild-guard.js')
 
 function displayErrorEmbed() 
 {
@@ -82,6 +83,7 @@ module.exports = {
         
         //handleLists checks what subcommand has been used, and executes
         //list functions/handles errors depending on the input.
+
         listHandler.handleLists(interaction);
     },
 };

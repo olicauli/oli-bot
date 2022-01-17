@@ -1,5 +1,5 @@
 //code taken from here: https://stackoverflow.com/questions/69171432/how-to-delete-slash-commands-in-discord-js-v13?rq=1
-require('dotenv').config();
+require('dotenv').config({ path: '../.env' });
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
