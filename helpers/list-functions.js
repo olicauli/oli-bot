@@ -148,10 +148,9 @@ function printList(list) //not the final form; printList will change to require 
         output = `**there's nothing on your list!**
                   
         type \`/list add <item>\` to add an item.
-        the buttons should let you clear or delete the list,
-        but you may also use \`/list rm <item>\`
-        to delete an item, or \`/list clear\` to clear
-        the list.`;
+        or \`/list rm <item>\` to delete an item.
+        after you update your list, type 
+        \`/list view <name>\` to view your updated list!`;
     }
     
     return output;
