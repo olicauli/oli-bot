@@ -109,16 +109,18 @@ if you would prefer to more privately report the bug, you can email me at <olica
 ## to-do list
 
 ### imminent:
-- get the shopping-list command up and running
-- figure out how to get message.js working
 - set up automated tests
+- allow multiple people to edit a list; allow users to specify
+   if their list is publically editable
+- create list clear command
+- create buttons that work with lists
 
 ### future goals:
 
-- allow users to create their own custom lists
 - allow users to set reminders
 - add more fun little miscellaneous commands
 - permissions? maybe?
+- utility commands like delete last 100 discord messages
 - perhaps. add some music commands
 
 ## contributions
