@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { InteractionResponseType } = require('discord-api-types');
+//const { InteractionResponseType } = require('discord-api-types');
 const { MessageEmbed, MessageActionRow, MessageButton, IntegrationApplication } = require('discord.js');
 const fs = require('fs'); //node file system module
 const listFunc = require('../helpers/list-functions.js');
@@ -64,7 +64,9 @@ module.exports = {
     async execute(interaction) {
         await interaction.deferReply();
         
+        //let subCommand = 'view';
         let subCommand = interaction.options.getSubcommand();
+        console.log(subCommand);
         //handle subcommands
         if (subCommand === 'view') 
         {
@@ -97,6 +99,7 @@ module.exports = {
         }
         else if (subCommand === 'create')
         {
+            console.log('in create');
             listFunc.createList('test');
         }
         else if (subCommand == 'delete')
