@@ -189,6 +189,7 @@ function getHelpEmbed()
             \`/list create <name>\` creates a new list called \`<name>\`.
             *note: all list names must be unique; you cannot have two lists with the same name.*\n
             \`/list delete <name>\` deletes a list called \`<name>\`.\n
+            \`/list all\` displays the names of all the lists currently stored in the database.\n
             \`/list add <name> <item>\` adds an item called \`<item>\` to a list called \`<name>\`.
             *note: the list you name must exist first in order for the item to be added.*\n
             \`/list rm <name> <item>\` removes an item called \`<item>\` from a list called \`<name>\`

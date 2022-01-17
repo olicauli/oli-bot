@@ -46,6 +46,11 @@ function successEmbed(commandName)
         desc = `your item was successfully ${modified} to the list!
                 view it by typing \`/list view <name>\`.`;
     }
+
+    else if (commandName === 'list delete')
+    {
+        desc = `your list was successfully deleted!`;
+    }
     
     const successMessage = new MessageEmbed()
     .setColor(global.SUCCESS_GREEN)
