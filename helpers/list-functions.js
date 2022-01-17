@@ -3,11 +3,8 @@ const pass = process.env.DB_PASS;
 const user = process.env.DB_USER
 const dbname = process.env.DB;
 
-const { Sequelize, Op } = require('sequelize');
-const usrModel = require('../models/user.js');
+const { Sequelize } = require('sequelize');
 const listModel = require('../models/list.js');
-const { RequestManager } = require('@discordjs/rest');
-const list = require('../commands/list.js');
 
 //database
 const sequelize = new Sequelize(dbname, user, pass, {
