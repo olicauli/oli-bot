@@ -1,20 +1,22 @@
 # hythlodaeus: baby's first discord bot
 
 hythlodaeus is a fun little miscellaneous bot i've made for myself because i wanted an
-interactive shopping list (which isn't functional atm) in my personal discord server. since he is my first
+interactive shopping list in my personal discord server. since he is my first
 bot of any kind he is very bare-bones at the moment, and only contains a few 
 commands. commands haven't been thoroughly tested yet, but they *should* work
 in server and DM channels.
 
 **frameworks used:**
 
-hythlodaeus is written entirely in javascript using discordJS and node.js.
+hythlodaeus is written entirely in javascript using discordJS and node.js. hythlodaeus also uses a postgresql database, and uses sequelize to manage the lists it creates.
 
 ## table of contents
 - [installation](#installation)
 - [usage (commands)](#usage)
+   * [general commands](#general)
+   * [list commands](#lists)
 - [support](#support)
-- [to-do list](#to-do-)
+- [to-do list](#to-do-list)
 - [contributions](#contributions)
 - [license](#license)
 
@@ -37,7 +39,10 @@ in order to run the bot, make sure that you have [npm](https://www.npmjs.com/) a
 3. open up a terminal of your choice, navigate to the folder and run the command `npm install`
 4. to run the bot you will need to set up two environment variables: `TOKEN` and `CLIENT_ID`.
    set `TOKEN` to your bot instance's token and `CLIENT_ID` to your bot instance's client id.
-5. once you have set up environment variables, you can run the bot! enter `node app.js` or `node .` in your terminal 
+5. hythlodaeus uses a postgresql database, which it accesses using sequelize. make sure you have a database set up, as well as a user that can create/delete/update
+tables.
+6. set `DB` to your database's name, `DB_USER` to the username you've set up for your bot, and `DB_PASS` to the password for the database user.
+7. once you have set up environment variables, you can run the bot! enter `node app.js` or `node .` in your terminal 
    to launch hythlodaeus.
 
 note: if you want to delete or deploy your own server-specific commands, you will need an additional environment variable:
@@ -51,6 +56,8 @@ as he was not written to respond to commands with any other prefix.
 all current possible commands are listed below.
 
 ### commands: 
+
+#### general
 `/about` - lists a short introduction about hythlodaeus containing the creator's
          discord tag (to be changed to github username in the future) and the 
          current version that is being run.
@@ -63,16 +70,30 @@ all current possible commands are listed below.
 
 `/server` - replies with the server name, id, description, creation date, and total members.
           if DMed this command, hythlodaeus will reply back with an error message.
-          
-`/list` - WIP, DOES NOT WORK - a command that allows users to view add, remove, or clear items from
-                       a shopping list. because i am a baby
-                       i haven't currently integrated the database for this yet, so this command
-                       is almost entirely nonfunctional. will reply telling the user that the 
-                       shopping list is empty.
 
 `/user` - replies with the user's nickname (or username if there is none), the user's tag,
         when the user joined the server (if executed in a discord server), and whether
         the user is a bot or not.
+
+#### lists
+
+`list help` - displays information about all list subcommands
+
+`list create <name>` - creates a new list called `<name>`
+
+`list delete <name>` - deletes an existing list called `<name>`
+
+`list view <name>` - displays the contents of a list called `<name>`.
+
+`list all` - displays the names of all the lists currently stored in the database.
+
+`list add <name> <item>` - adds an item called `<item>` to a list called `<name>`.
+
+`list rm <name> <item>` - removes an item called `<item>` from a list called `<name>`
+
+**note:** currently, only the author of a list can modify it.
+additionally, duplicate lists (lists with the same name) are not currently allowed.
+these are limitations that will hopefully be examined and changed in later builds of hythlodaeus.
 
 ### messages:
 
@@ -90,16 +111,18 @@ if you would prefer to more privately report the bug, you can email me at <olica
 ## to-do list
 
 ### imminent:
-- get the shopping-list command up and running
-- figure out how to get message.js working
 - set up automated tests
+- allow multiple people to edit a list; allow users to specify
+   if their list is publically editable
+- create list clear command
+- create buttons that work with lists
 
 ### future goals:
 
-- allow users to create their own custom lists
 - allow users to set reminders
 - add more fun little miscellaneous commands
 - permissions? maybe?
+- utility commands like delete last 100 discord messages
 - perhaps. add some music commands
 
 ## contributions
