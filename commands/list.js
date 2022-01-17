@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const { InteractionResponseType } = require('discord-api-types');
 const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
 const fs = require('fs'); //node file system module
 const listFunc = require('../helpers/list-functions.js');
@@ -15,7 +16,7 @@ module.exports = {
             .setName('rm')
             .setDescription('remove an item from a list')
             .addStringOption(option =>
-                option.setName('listid')
+                option.setName('id')
                 .setDescription('the id of the list you want to change')
                 .setRequired(true))
             .addStringOption(option =>
@@ -27,7 +28,7 @@ module.exports = {
             .setName('add')
             .setDescription('add an item to a list')
             .addStringOption(option =>
-                option.setName('listid')
+                option.setName('id')
                 .setDescription('the id of the list you want to change')
                 .setRequired(true))
             .addStringOption(option =>
@@ -39,7 +40,7 @@ module.exports = {
             .setName('delete')
             .setDescription('delete a list that you own')
             .addStringOption(option =>
-                option.setName('listid')
+                option.setName('id')
                 .setDescription('the id of the list you want to change')
                 .setRequired(true)))
         .addSubcommand(subcommand => 
@@ -84,6 +85,8 @@ module.exports = {
             .setTitle('shopping list')
             .setDescription(listFunc.printItems(["eggs", "milk", "bread"]));
             
+        await interaction.
+
         await interaction.editReply({ embeds: [listItems], components: [row] });
     },
 };
