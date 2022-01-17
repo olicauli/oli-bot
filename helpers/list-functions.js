@@ -60,7 +60,7 @@ async function deleteList(list)
 }
 
 //add or remove an item
-async function setItem(item, listId, option)
+async function setItem(list, item, option)
 {
     let itemsArr = list.items;
     try 
@@ -114,11 +114,14 @@ function printListInfo(list)
             list creator: ${list.authorId}`;
 }
 
-function printItems(itemsArr) //not the final form; printList will change to require args and
+function printList(list) //not the final form; printList will change to require args and
                      //change output depending on list contents
 {
+    //get the list
+    const itemsArr = list.items;
+
     let output = ""
-    if (itemsArr.length > 0)
+    if (itemsArr != null && itemsArr.length > 0)
     {
         itemsArr.forEach((item, index) => {
             output = output.concat(`**${index + 1}**. ${item}\n`);
@@ -139,4 +142,4 @@ function printItems(itemsArr) //not the final form; printList will change to req
 }
 
 
-module.exports = { printItems, createList, setItem, deleteList };
+module.exports = { printList, createList, setItem, deleteList };

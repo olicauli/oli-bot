@@ -34,11 +34,11 @@ module.exports = {
             .setName('rm')
             .setDescription('remove an item from a list')
             .addStringOption(option =>
-                option.setName('id')
-                .setDescription('the id of the list you want to change')
+                option.setName('list-name')
+                .setDescription('the name of the list you want to change')
                 .setRequired(true))
             .addStringOption(option =>
-                option.setName('items')
+                option.setName('item')
                 .setDescription('the item you want to remove')
                 .setRequired(true)))
         .addSubcommand(subcommand => 
@@ -46,11 +46,11 @@ module.exports = {
             .setName('add')
             .setDescription('add an item to a list')
             .addStringOption(option =>
-                option.setName('id')
-                .setDescription('the id of the list you want to change')
+                option.setName('list-name')
+                .setDescription('the name of the list you want to change')
                 .setRequired(true))
             .addStringOption(option =>
-                option.setName('items')
+                option.setName('item')
                 .setDescription('the item you want to add')
                 .setRequired(true)))
         .addSubcommand(subcommand => 

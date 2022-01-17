@@ -1,6 +1,7 @@
 const { MessageEmbed, MessageActionRow, MessageButton} = require('discord.js');
 //const fs = require('fs'); //node file system module
 const listFunc = require('../helpers/list-functions.js');
+const listModel = require('../models/list.js');
 const feedbackMsgs = require('../helpers/command-feedback-msgs.js');
 
 async function handleLists(interaction)
@@ -12,31 +13,44 @@ async function handleLists(interaction)
     //handle subcommands
     if (subCommand === 'view') 
     {
-        const row = new MessageActionRow()
-        .addComponents
-        (
-            
-            new MessageButton()
-            .setCustomId('add')
-            .setLabel('add item')
-            .setStyle('SUCCESS'),
-            
-            new MessageButton()
-            .setCustomId('remove')
-            .setLabel('remove item')
-            .setStyle('DANGER'),
-            
-            new MessageButton()
-            .setCustomId('clear')
-            .setLabel('clear shopping list')
-            .setStyle('SECONDARY'),
-        );
+        //get the options
+        let listName = await interaction.options.getString('name', true);
+        //get the list
+        const list = await listModel.List.findOne({ where: { name: listName } });
 
-        const listItems = new MessageEmbed()
-        .setColor(global.HYTHLO_PINK)
-        .setTitle('shopping list')
-        .setDescription(listFunc.printItems(["eggs", "milk", "bread"]));
-        await interaction.editReply({ embeds: [listItems], components: [row] });
+        //if the list exists, print it
+        if (list)
+        {
+            const row = new MessageActionRow()
+            .addComponents
+            (
+                
+                new MessageButton()
+                .setCustomId('add')
+                .setLabel('add item')
+                .setStyle('SUCCESS'),
+                
+                new MessageButton()
+                .setCustomId('remove')
+                .setLabel('remove item')
+                .setStyle('DANGER'),
+                
+                new MessageButton()
+                .setCustomId('clear')
+                .setLabel('clear shopping list')
+                .setStyle('SECONDARY'),
+            );
+
+            const listItems = new MessageEmbed()
+            .setColor(global.HYTHLO_PINK)
+            .setTitle(`${listName} list`)
+            .setDescription(listFunc.printList(list));
+            await interaction.editReply({ embeds: [listItems], components: [row] });
+        }
+        else 
+        {
+            interaction.editReply({ embeds: [feedbackMsgs.errorEmbed()] });
+        }
     }
     else if (subCommand === 'create')
     {
@@ -63,11 +77,25 @@ async function handleLists(interaction)
     }
     else if (subCommand === 'add')
     {
-        listFunc.setItem('test item', 1, 'add');
+        //get the options
+        let listName = await interaction.options.getString('list-name', true);
+        let item = await interaction.options.getString('item', true);
+        //get the list
+        const list = await listModel.List.findOne({ where: { name: listName } });
+
+        //add the item
+        listFunc.setItem(list, item, 'add');
     }
     else if (subCommand === 'rm')
     {
-        listFunc.setItem('test item', 1, 'rm');
+        //get the options
+        let listName = await interaction.options.getString('list-name', true);
+        let item = await interaction.options.getString('item', true);
+        //get the list
+        const list = await listModel.List.findOne({ where: { name: listName } });
+
+        //add the item
+        listFunc.setItem(list, item, 'rm');
     }
 }
 

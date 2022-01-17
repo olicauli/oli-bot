@@ -1,5 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 
+//GENERAL ERROR MESSAGE
 function errorEmbed() 
 {
     const errorMessage = new MessageEmbed()
@@ -10,12 +11,13 @@ function errorEmbed()
     return errorMessage;
 }
 
+//success messages for various commands
 function successEmbed(commandName)
 {
     let desc = "";   
     if (commandName === "list create")
     {
-        desc = `your list was successfully created!\nview it by typing \`/list view <list-id>\`.`;
+        desc = `your list was successfully created!\nview it by typing \`/list view <name>\`.`;
     }
     
     const successMessage = new MessageEmbed()
