@@ -12,7 +12,8 @@ const list = require('../commands/list.js');
 //database
 const sequelize = new Sequelize(dbname, user, pass, {
     host: 'localhost',
-    dialect: 'postgres'
+    dialect: 'postgres',
+    logging: false
 });
 
 //create list

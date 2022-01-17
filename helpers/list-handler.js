@@ -8,8 +8,7 @@ async function handleLists(interaction)
     //let subCommand = 'view';
     console.log(interaction.options);
     let subCommand = await interaction.options.getSubcommand();
-    let option = await interaction.options.getString();
-    console.log(`subCommand: ${subCommand}\noption: ${option}`);
+    console.log(`subCommand: ${subCommand}`);
     //handle subcommands
     if (subCommand === 'view') 
     {
@@ -42,15 +41,17 @@ async function handleLists(interaction)
     else if (subCommand === 'create')
     {
         console.log('in create');
-        listFunc.createList('test', undefined, undefined, undefined)
+        let listName = await interaction.options.getString('name', true);
+        let userId = await interaction.user.id;
+        listFunc.createList(listName, userId)
         .then(() =>
         {
             interaction.editReply({ embeds: [feedbackMsgs.successEmbed('list create')] });
-            console.log("in then");
+            //console.log("in then");
         })
         .catch(err =>
             {
-                console.log('in catch');
+                //console.log('in catch');
                 console.log(err); //log the error, then display the error message
 
                 interaction.editReply({ embeds: [feedbackMsgs.errorEmbed()] });
