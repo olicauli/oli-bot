@@ -63,11 +63,11 @@ async function handleLists(interaction)
     }
     else if (subCommand === 'add')
     {
-        listFunc.addItem('test item', 1);
+        listFunc.setItem('test item', 1, 'add');
     }
     else if (subCommand === 'rm')
     {
-        listFunc.rmItem('test item', 1);
+        listFunc.setItem('test item', 1, 'rm');
     }
 }
 

@@ -79,13 +79,21 @@ async function deleteList(list)
 {
     await list.destroy();
 }
-//add item
-async function addItem(item, listId)
+//add or remove an item
+async function setItem(item, listId, option)
 {
     let itemsArr = list.items;
     try 
     {
-        itemsArr.push(item);
+        if (option === 'add') itemsArr.push(item);
+        else if (option === 'rm') itemsArr.splice(itemsArr.indexOf(item), 1);
+        else 
+        {
+            console.log(`error: option is unspecified or incorrect!\n
+                         option: ${option}`);
+            return Promise.reject();
+        }
+        
         const affectedRows = 
         await listModel.List.update({ items: itemsArr }, 
                                     { where: { id: listId } });
@@ -108,6 +116,7 @@ async function addItem(item, listId)
     }
 }
 //remove item
+/*
 async function rmItem(item, listId)
 {
     let itemsArr = list.items;
@@ -136,6 +145,7 @@ async function rmItem(item, listId)
     }
     
 }
+*/
 /*
 //clear list
 function clearList(list)
@@ -226,4 +236,4 @@ function printItems(itemsArr) //not the final form; printList will change to req
 }
 
 
-module.exports = { printItems, createList, rmItem, addItem, deleteList };
+module.exports = { printItems, createList, setItem, deleteList };
