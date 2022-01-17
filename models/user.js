@@ -37,11 +37,6 @@ class User extends Model {}
 User.init
 ({
     //model attributes
-    tag: 
-    {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
     userid:
     {
         type: DataTypes.STRING,

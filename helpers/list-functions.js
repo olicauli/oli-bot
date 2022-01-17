@@ -82,7 +82,7 @@ async function addItem(item, listId)
     }
 }
 //remove item
-function rmItem(item, listId)
+async function rmItem(item, listId)
 {
     let result = '';
     let itemsArr = list.items;
@@ -102,6 +102,7 @@ function rmItem(item, listId)
     }
     return result;
 }
+/*
 //clear list
 function clearList(list)
 {
@@ -129,6 +130,7 @@ function rmEditor(user, rmAll)
     //else
         //iterate through editors in list and remove them
 }
+*/
 
 function printListInfo(list) 
 {
@@ -147,6 +149,7 @@ function printListInfo(list)
             users with list access: ${editors}`;
 }
 
+/*
 //user is a discordjs User class
 //https://discord.js.org/#/docs/discord.js/stable/class/User
 function printAllLists(user)
@@ -161,6 +164,7 @@ function printAllLists(user)
 
     //print the lists' names, 
 }
+*/
 
 function printItems(itemsArr) //not the final form; printList will change to require args and
                      //change output depending on list contents
@@ -169,7 +173,7 @@ function printItems(itemsArr) //not the final form; printList will change to req
     if (itemsArr.length > 0)
     {
         itemsArr.forEach((item, index) => {
-            output = output.concat(`*${index + 1}*. ${item}\n`);
+            output = output.concat(`**${index + 1}**. ${item}\n`);
         })
     }
     else 
