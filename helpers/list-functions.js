@@ -79,8 +79,10 @@ async function setItem(list, item, option)
     }
     try 
     {
+        //add or remove the item
         if (option === 'add') itemsArr.push(item);
         else if (option === 'rm') itemsArr.splice(itemsArr.indexOf(item), 1);
+        //output an error if option is invalid
         else 
         {
             console.log(`error: option is unspecified or incorrect!\n
@@ -88,6 +90,7 @@ async function setItem(list, item, option)
             return Promise.reject();
         }
         
+        //update the instance in the database
         const affectedRows = 
         await listModel.List.update({ items: itemsArr }, 
                                     { where: { name: list.name } });
@@ -132,7 +135,7 @@ function printListInfo(list)
 function printList(list) //not the final form; printList will change to require args and
                      //change output depending on list contents
 {
-    //get the list
+    //get the list items
     const itemsArr = list.items;
 
     let output = ""

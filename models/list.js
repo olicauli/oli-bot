@@ -7,7 +7,8 @@ const dbname = process.env.DB;
 
 const sequelize = new Sequelize(dbname, user, pass, {
     host: 'localhost',
-    dialect: 'postgres'
+    dialect: 'postgres',
+    logging: false
 });
 
 class List extends Model {}
