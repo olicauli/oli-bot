@@ -6,8 +6,9 @@ const feedbackMsgs = require('../helpers/command-feedback-msgs.js');
 async function handleLists(interaction)
 {
     //let subCommand = 'view';
-    let subCommand = interaction.options.getSubcommand();
-    let option = interaction.options.getString();
+    console.log(interaction.options);
+    let subCommand = await interaction.options.getSubcommand();
+    let option = await interaction.options.getString();
     console.log(`subCommand: ${subCommand}\noption: ${option}`);
     //handle subcommands
     if (subCommand === 'view') 
