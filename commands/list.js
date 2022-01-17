@@ -23,6 +23,10 @@ module.exports = {
         .setDescription('view/add/remove stuff on the shopping list (WIP)')
         .addSubcommand(subcommand => 
             subcommand
+            .setName('help')
+            .setDescription('get information on how to use /list'))
+        .addSubcommand(subcommand => 
+            subcommand
             .setName('view')
             .setDescription('view a list')
             .addStringOption(option =>

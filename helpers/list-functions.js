@@ -1,4 +1,5 @@
 require('dotenv').config({ path: '../.env' });
+const { MessageEmbed } = require('discord.js');
 const pass = process.env.DB_PASS;
 const user = process.env.DB_USER
 const dbname = process.env.DB;
@@ -156,5 +157,27 @@ function printList(list) //not the final form; printList will change to require 
     return output;
 }
 
+function getHelpEmbed()
+{
+    desc = `**commands**
+            \`/list create <name>\` creates a new list called \`<name>\`.\n
+            \`/list delete <name>\` deletes a list called \`<name>\`.\n
+            \`/list add <name> <item>\` adds an item called \`<item>\` to a list called \`<name>\`.
+            *note: the list you name must exist first in order for the item to be added.*\n
+            \`/list rm <name> <item>\` removes an item called \`<item>\` from a list called \`<name>\`
+            *note: the list you name must exist first in order for the item to be removed.*\n
+            
+            **other notes**
+            in the current build of hythlodaeus, you must be the author of the list in order
+            to edit it. however, in the future, olicauli will hopefully add the ability to
+            specify who can and can't edit a list.`;
 
-module.exports = { printList, createList, setItem, deleteList };
+    const helpEmbed = new MessageEmbed()
+            .setColor(global.HYTHLO_PINK)
+            .setTitle(`how to use \`/list\`!`)
+            .setDescription(desc);
+    return helpEmbed;
+}
+
+
+module.exports = { printList, createList, setItem, deleteList, getHelpEmbed };

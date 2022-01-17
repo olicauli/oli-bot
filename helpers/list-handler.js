@@ -3,6 +3,7 @@ const { MessageEmbed, MessageActionRow, MessageButton} = require('discord.js');
 const listFunc = require('../helpers/list-functions.js');
 const listModel = require('../models/list.js');
 const feedbackMsgs = require('../helpers/command-feedback-msgs.js');
+const list = require('../commands/list.js');
 
 async function hasPerms(user, authorOfList)
 {
@@ -15,7 +16,13 @@ async function handleLists(interaction)
     let subCommand = await interaction.options.getSubcommand();
     console.log(`${interaction.user.tag} executed list subcommand ${subCommand}!`);
     //handle subcommands
-    if (subCommand === 'view') 
+    if (subCommand === 'help')
+    {
+        helpEmbed = listFunc.getHelpEmbed();
+        await interaction.editReply({ embeds: [helpEmbed] });
+
+    }
+    else if (subCommand === 'view') 
     {
         //get the options
         let listName = await interaction.options.getString('name', true);
@@ -25,6 +32,8 @@ async function handleLists(interaction)
         //if the list exists, print it
         if (list)
         {
+            //a button row; currently unused, as we currently don't have
+            //a button handler.
             /*
             const row = new MessageActionRow()
             .addComponents
