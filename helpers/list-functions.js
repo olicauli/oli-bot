@@ -63,6 +63,7 @@ async function createList(listName, editors, items, author)
                                         //a promise telling the caller that it was rejected
         }
         
+        console.log(err.name);
         console.log('error! command failed');
         return Promise.reject(err);
     }

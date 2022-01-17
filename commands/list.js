@@ -1,8 +1,8 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 //const { InteractionResponseType } = require('discord-api-types');
-const { MessageEmbed, MessageActionRow, MessageButton, IntegrationApplication } = require('discord.js');
+const { MessageEmbed, MessageActionRow, MessageButton} = require('discord.js');
 const fs = require('fs'); //node file system module
-const listFunc = require('../helpers/list-functions.js');
+const listHandler = require('../helpers/list-handler.js');
 
 function displayErrorEmbed() 
 {
@@ -72,75 +72,8 @@ module.exports = {
     async execute(interaction) {
         await interaction.deferReply();
         
-        //let subCommand = 'view';
-        let subCommand = interaction.options.getSubcommand();
-        console.log(subCommand);
-        //handle subcommands
-        if (subCommand === 'view') 
-        {
-            const row = new MessageActionRow()
-            .addComponents
-            (
-                /*
-                new MessageButton()
-                .setCustomId('add')
-                .setLabel('add item')
-                .setStyle('SUCCESS'),
-                */
-                
-                new MessageButton()
-                .setCustomId('remove')
-                .setLabel('remove item')
-                .setStyle('DANGER'),
-                
-                new MessageButton()
-                .setCustomId('clear')
-                .setLabel('clear shopping list')
-                .setStyle('SECONDARY'),
-            );
-
-            const listItems = new MessageEmbed()
-            .setColor(global.HYTHLO_PINK)
-            .setTitle('shopping list')
-            .setDescription(listFunc.printItems(["eggs", "milk", "bread"]));
-            await interaction.editReply({ embeds: [listItems], components: [row] });
-        }
-        else if (subCommand === 'create')
-        {
-            console.log('in create');
-            let errorCode = listFunc.createList('test', undefined, undefined, '135310222724956160')
-            .then(() =>
-            {
-                const success = new MessageEmbed()
-                    .setColor(global.SUCCESS_GREEN)
-                    .setTitle('success!')
-                    .setDescription(`your list was successfully created!
-                                     view it by typing \`/list view <list-id>\`.`);
-
-                    interaction.editReply({ embeds: [success] });
-                console.log("in then");
-            })
-            .catch(err =>
-                {
-                    console.log('in catch');
-                    console.log(err); //log the error, then display the error message
-
-                    
-    
-                    interaction.editReply({ embeds: [displayErrorEmbed()] });
-                });
-        }
-        else if (subCommand == 'delete')
-        {
-            //listFunc.deleteList();
-        }
-        else if (subCommand === 'add')
-        {
-            listFunc.addItem('test item', 1);
-        }
-        else if (subCommand === 'rm')
-        {
-            listFunc.rmItem('test item', 1);
-        }
+        //handleLists checks what subcommand has been used, and executes
+        //listfunctions/handles errors depending on the input.
+        listHandler.handleLists(interaction);
     },
 };
