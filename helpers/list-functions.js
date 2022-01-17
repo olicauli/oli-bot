@@ -115,8 +115,7 @@ async function setItem(list, item, option)
 
 function getListInfo(list) 
 {
-    return `list name: ${list.name}
-            list id: ${list.id}`;
+    return `list name: ${list.name}`;
 }
 
 function getAllListsEmbed(lists)
@@ -188,6 +187,7 @@ function getHelpEmbed()
             \`/list create <name>\` creates a new list called \`<name>\`.
             *note: all list names must be unique; you cannot have two lists with the same name.*\n
             \`/list delete <name>\` deletes a list called \`<name>\`.\n
+            \`/list view <name>\` displays the contents of a list called \`<name>\`.\n
             \`/list all\` displays the names of all the lists currently stored in the database.\n
             \`/list add <name> <item>\` adds an item called \`<item>\` to a list called \`<name>\`.
             *note: the list you name must exist first in order for the item to be added.*\n
