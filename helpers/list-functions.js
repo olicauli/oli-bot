@@ -48,12 +48,12 @@ async function createList(listName, author)
 }
 
 //delete list
-async function deleteList(list)
+async function deleteList(listName)
 {
     try 
     {
         await listModel.List.destroy( 
-            { where: { name: list.name } });
+            { where: { name: listName } });
         console.log(`deleted list ${listName}!`);
         return Promise.resolve();
     }

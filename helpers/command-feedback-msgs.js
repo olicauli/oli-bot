@@ -15,6 +15,10 @@ function errorEmbed(err)
     {
         desc = "a list with that name already exists!\nplease try again with a unique list name.";
     }
+    else if (err === "edit disallowed")
+    {
+        desc = "you must be the author of a list you wish to modify!";
+    }
     else //default error message
     {
         desc = "the command failed to execute!";

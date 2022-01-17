@@ -4,6 +4,11 @@ const listFunc = require('../helpers/list-functions.js');
 const listModel = require('../models/list.js');
 const feedbackMsgs = require('../helpers/command-feedback-msgs.js');
 
+async function hasPerms(user, authorOfList)
+{
+    return authorOfList === user;
+}
+
 async function handleLists(interaction)
 {
     //let subCommand = 'view';
@@ -20,6 +25,7 @@ async function handleLists(interaction)
         //if the list exists, print it
         if (list)
         {
+            /*
             const row = new MessageActionRow()
             .addComponents
             (
@@ -39,12 +45,13 @@ async function handleLists(interaction)
                 .setLabel('clear shopping list')
                 .setStyle('SECONDARY'),
             );
+            */
 
             const listItems = new MessageEmbed()
             .setColor(global.HYTHLO_PINK)
             .setTitle(`${listName} list`)
             .setDescription(listFunc.printList(list));
-            await interaction.editReply({ embeds: [listItems], components: [row] });
+            await interaction.editReply({ embeds: [listItems], /*components: [row]*/ });
         }
         else 
         {
@@ -58,6 +65,7 @@ async function handleLists(interaction)
         let listName = await interaction.options.getString('name', true);
         //check if list already exists
         const list = await listModel.List.findOne({ where: { name: listName } });
+
         if (!list)
         {
             let userId = await interaction.user.id;
@@ -91,7 +99,14 @@ async function handleLists(interaction)
 
         if (list)
         {
-            listFunc.deleteList(list)
+            if (!hasPerms(interaction.user.id, list.authorId))
+            {
+                console.log("error! insufficient edit permissions");
+                interaction.editReply({ embeds: [feedbackMsgs.errorEmbed('edit disallowed')] });
+                return;
+            }
+
+            listFunc.deleteList(listName)
             .then(() => 
             {
                 interaction.editReply({ embeds: [feedbackMsgs.successEmbed('list delete')] });
@@ -118,11 +133,17 @@ async function handleLists(interaction)
         let item = await interaction.options.getString('item', true);
         //get the list
         const list = await listModel.List.findOne({ where: { name: listName } });
-        //console.log(list);
 
         //add item if list exists
         if (list)
         {
+            if (!hasPerms(interaction.user.id, list.authorId))
+            {
+                console.log("error! insufficient edit permissions");
+                interaction.editReply({ embeds: [feedbackMsgs.errorEmbed('edit disallowed')] });
+                return;
+            }
+
             listFunc.setItem(list, item, subCommand)
             .then(() => 
             {
