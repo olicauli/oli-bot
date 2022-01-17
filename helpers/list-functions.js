@@ -17,7 +17,7 @@ const sequelize = new Sequelize(dbname, user, pass, {
 // /list create <list name>
 async function createList(listName, author)
 {
-    console.log('in list-functions create list');
+    //console.log('in list-functions create list');
     if (listName == undefined)
     {
         console.log("listname undefined");
@@ -26,13 +26,10 @@ async function createList(listName, author)
 
     try 
     {
-        console.log("in try");
-        const newList = await listModel.List.create({ name: listName, 
-            authorId: author,
-            //editors: null, //editors is a future feature
-            //items: null //creating with items is a future feature
-            });
-        console.log(newList.toJSON());
+        //console.log("in try");
+        await listModel.List.create({ name: listName, 
+            authorId: author });
+        console.log(`created list ${listName}!`);
         return Promise.resolve();
     }
     catch (err)
@@ -57,6 +54,7 @@ async function deleteList(list)
     {
         await listModel.List.destroy( 
             { where: { name: list.name } });
+        console.log(`deleted list ${listName}!`);
         return Promise.resolve();
     }
     catch (err)

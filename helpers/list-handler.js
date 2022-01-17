@@ -7,9 +7,8 @@ const feedbackMsgs = require('../helpers/command-feedback-msgs.js');
 async function handleLists(interaction)
 {
     //let subCommand = 'view';
-    console.log(interaction.options);
     let subCommand = await interaction.options.getSubcommand();
-    console.log(`subCommand: ${subCommand}`);
+    console.log(`${interaction.user.tag} executed subcommand ${subCommand}!`);
     //handle subcommands
     if (subCommand === 'view') 
     {
@@ -119,7 +118,7 @@ async function handleLists(interaction)
         let item = await interaction.options.getString('item', true);
         //get the list
         const list = await listModel.List.findOne({ where: { name: listName } });
-        console.log(list);
+        //console.log(list);
 
         //add item if list exists
         if (list)
@@ -128,7 +127,7 @@ async function handleLists(interaction)
             .then(() => 
             {
                 const msg = 'list '.concat(subCommand);
-                console.log(msg);
+                //console.log(msg);
                 interaction.editReply({ embeds: [feedbackMsgs.successEmbed(msg)] });
             })
             .catch(err =>

@@ -3,13 +3,13 @@ const { MessageEmbed } = require('discord.js');
 //GENERAL ERROR MESSAGE
 function errorEmbed(err) 
 {
-    console.log('in errorembed');
-    console.log(err);
+    //console.log('in errorembed');
+    //console.log(err);
     let desc = '';
     if (err === 'list nonexistent')
     {
         desc = "the list you tried to access doesn't exist!";
-        console.log(`desc: ${desc}`);
+        //console.log(`desc: ${desc}`);
     }
     else if (err === 'list exists') //for creating lists
     {
