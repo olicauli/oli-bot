@@ -19,6 +19,7 @@ const sequelize = new Sequelize(dbname, user, pass, {
 // /list create <name> <editors (optional)> <items (optional)>
 async function createList(listName, editors, items, author)
 {
+    console.log('in list-functions create list');
     if (listName == undefined)
     {
         console.log("listname undefined");
@@ -45,20 +46,25 @@ async function createList(listName, editors, items, author)
 
     try 
     {
+        console.log("in try");
         const newList = await listModel.List.create({ name: listName, 
             authorId: author,
             editors: editorsArr,
             items: itemsArr });
         console.log(newList.toJSON());
+        return Promise.resolve();
     }
-    catch (error)
+    catch (err)
     {
-        if (error.name === 'SequelizeUniqueConstraintError') 
+        if (err.name === 'SequelizeUniqueConstraintError') 
         {
-            //tag already exists; return an error message
+            console.log('error! list already exists')
+            return Promise.reject(err); //async functions return promises; returns
+                                        //a promise telling the caller that it was rejected
         }
-    
-        //something different went wrong; return an error message
+        
+        console.log('error! command failed');
+        return Promise.reject(err);
     }
 }
 //delete list

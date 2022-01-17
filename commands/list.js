@@ -4,7 +4,15 @@ const { MessageEmbed, MessageActionRow, MessageButton, IntegrationApplication } 
 const fs = require('fs'); //node file system module
 const listFunc = require('../helpers/list-functions.js');
 
-//console.log(process.env);
+function displayErrorEmbed() 
+{
+    const errorMessage = new MessageEmbed()
+    .setColor(global.ERROR_RED)
+    .setTitle('error!')
+    .setDescription('the command failed to execute!');
+
+    return errorMessage;
+}
 
 module.exports = {
     //this whole block is simply building the commands.
@@ -100,7 +108,27 @@ module.exports = {
         else if (subCommand === 'create')
         {
             console.log('in create');
-            listFunc.createList('test');
+            let errorCode = listFunc.createList('test', undefined, undefined, '135310222724956160')
+            .then(() =>
+            {
+                const success = new MessageEmbed()
+                    .setColor(global.SUCCESS_GREEN)
+                    .setTitle('success!')
+                    .setDescription(`your list was successfully created!
+                                     view it by typing \`/list view <list-id>\`.`);
+
+                    interaction.editReply({ embeds: [success] });
+                console.log("in then");
+            })
+            .catch(err =>
+                {
+                    console.log('in catch');
+                    console.log(err); //log the error, then display the error message
+
+                    
+    
+                    interaction.editReply({ embeds: [displayErrorEmbed()] });
+                });
         }
         else if (subCommand == 'delete')
         {
