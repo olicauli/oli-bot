@@ -75,7 +75,7 @@ all current possible commands are listed below.
 
 #### list commands
 
-`list help` - displays all list subcommands
+`list help` - displays information about all list subcommands
 
 `list create <name>` - creates a new list called `<name>`
 
@@ -89,6 +89,7 @@ all current possible commands are listed below.
 
 `list rm <name> <item>` - removes an item called `<item>` from a list called `<name>`
 
+notes:
 
 ### messages:
 

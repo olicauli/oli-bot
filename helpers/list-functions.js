@@ -195,7 +195,7 @@ function getHelpEmbed()
             *note: the list you name must exist first in order for the item to be removed.*\n
             
             **other notes**
-            in the current build of hythlodaeus, you must be the author of the list in order
+            in the current build of hythlodaeus, you must be the author of a list in order
             to edit it. however, in the future, olicauli will hopefully add the ability to
             specify who can and can't edit a list. 
             
