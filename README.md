@@ -16,7 +16,7 @@ hythlodaeus is written entirely in javascript using discordJS and node.js. hythl
    * [general commands](#general)
    * [list commands](#lists)
 - [support](#support)
-- [to-do list](#to-do)
+- [to-do list](#to-do-list)
 - [contributions](#contributions)
 - [license](#license)
 
