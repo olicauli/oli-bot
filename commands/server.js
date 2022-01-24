@@ -33,6 +33,7 @@ module.exports = {
         .setName('server')
         .setDescription('replies with server info'),
     async execute(interaction) {
+        await interaction.deferReply();
         guildGuard.executeIfInGuild(interaction, serverInfoEmbed, interaction);
     },
 };

@@ -27,7 +27,7 @@ sequelize = new Sequelize(process.env.DATABASE_URL, {
 
 //create list
 // /list create <list name>
-async function createList(listName, author)
+async function createList(listName, author, guild)
 {
     //console.log('in list-functions create list');
     if (listName == undefined)
@@ -40,7 +40,7 @@ async function createList(listName, author)
     {
         //console.log("in try");
         await listModel.List.create({ name: listName, 
-            authorId: author });
+            authorId: author, guildId: guild });
         console.log(`created list ${listName}!`);
         return Promise.resolve();
     }
@@ -60,12 +60,12 @@ async function createList(listName, author)
 }
 
 //delete list
-async function deleteList(listName)
+async function deleteList(listName, guild)
 {
     try 
     {
         await listModel.List.destroy( 
-            { where: { name: listName } });
+            { where: { name: listName, guildId: guild } });
         console.log(`deleted list ${listName}!`);
         return Promise.resolve();
     }
@@ -77,7 +77,7 @@ async function deleteList(listName)
 }
 
 //add or remove an item
-async function setItem(list, item, option)
+async function setItem(list, item, option, guild)
 {
     if (list.items === null)
     {
@@ -103,7 +103,7 @@ async function setItem(list, item, option)
         //update the instance in the database
         const affectedRows = 
         await listModel.List.update({ items: itemsArr }, 
-                                    { where: { name: list.name } });
+                                    { where: { name: list.name, guildId: guild } });
     
         if (affectedRows > 0)
         {
@@ -126,14 +126,14 @@ async function setItem(list, item, option)
 
 function getListInfo(list) 
 {
-    return `list name: ${list.name}`;
+    return `list name: ${list.name}, list guild: ${list.guildId}`;
 }
 
 function getAllListsEmbed(lists)
 {
     const embed = new MessageEmbed()
             .setColor(global.HYTHLO_PINK)
-            .setTitle(`all lists in the database:`)
+            .setTitle(`all lists for this server:`)
             .setDescription(lists);
 
     return embed;
@@ -206,8 +206,8 @@ function getHelpEmbed()
             *note: the list you name must exist first in order for the item to be removed.*\n
             
             **other notes**
-            in the current build of hythlodaeus, you must be the author of a list in order
-            to edit it. however, in the future, olicauli will hopefully add the ability to
+            in the current build of hythlodaeus, any user in the same server as a list can
+            edit it. however, in the future, olicauli will hopefully add the ability to
             specify who can and can't edit a list. 
             
             also, being able to create duplicate lists provided they are made by different authors 
