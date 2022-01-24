@@ -83,7 +83,7 @@ module.exports = {
         
         //handleLists checks what subcommand has been used, and executes
         //list functions/handles errors depending on the input.
-
-        listHandler.handleLists(interaction);
+        guildGuard.executeIfInGuild(interaction, listHandler.handleLists, interaction);
+        //listHandler.handleLists(interaction);
     },
 };

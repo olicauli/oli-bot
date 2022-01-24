@@ -11,7 +11,7 @@ async function executeIfInGuild(interaction, func, funcArgs)
         .setColor('#ff99df')
         .setTitle(`this is a server specific command!`)
         .setDescription(`try this command again when you are in a server.`);
-        await interaction.reply({ embeds: [embed] });
+        await interaction.editReply({ embeds: [embed] });
     }
     
     else {

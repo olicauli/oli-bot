@@ -36,6 +36,11 @@ List.init
         type: DataTypes.STRING,
         allowNull: false
     },
+    guildId: 
+    {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     /*
     editors: //future feature: add later
     {

@@ -17,7 +17,11 @@ function errorEmbed(err)
     }
     else if (err === "edit disallowed")
     {
-        desc = "you must be the author of a list you wish to modify!";
+        desc = "you must be in the same server of a list you wish to modify!";
+    }
+    else if (err === 'item not found')
+    {
+        desc = "your item wasn't on the list!"
     }
     else //default error message
     {

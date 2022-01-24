@@ -24,7 +24,7 @@ async function handleLists(interaction)
         //get the options
         let listName = await interaction.options.getString('name', true);
         //get the list
-        const list = await listModel.List.findOne({ where: { name: listName } });
+        const list = await listModel.List.findOne({ where: { name: listName, guildId: interaction.guildId } });
 
         //if the list exists, print it
         if (list)
@@ -40,7 +40,7 @@ async function handleLists(interaction)
     }
     else if (subCommand === 'all')
     {
-        const listNames = await listModel.List.findAll({ attributes: ['name'] });
+        const listNames = await listModel.List.findAll({ where: { guildId: interaction.guildId } });
         const listString = listNames.map(list => list.name).join(', ') 
         || `there are no lists in the database!
             create a list with \`/list create <name>\`.`;
@@ -53,12 +53,12 @@ async function handleLists(interaction)
         //get options
         let listName = await interaction.options.getString('name', true);
         //check if list already exists
-        const list = await listModel.List.findOne({ where: { name: listName } });
+        const list = await listModel.List.findOne({ where: { name: listName, guildId: interaction.guildId } });
 
         if (!list)
         {
             let userId = await interaction.user.id;
-            listFunc.createList(listName, userId)
+            listFunc.createList(listName, userId, interaction.guildId)
             .then(() =>
             {
                 interaction.editReply({ embeds: [feedbackMsgs.successEmbed('list create')] });
@@ -84,18 +84,18 @@ async function handleLists(interaction)
         //get options
         let listName = await interaction.options.getString('name', true);
         //get list
-        const list = await listModel.List.findOne({ where: { name: listName } });
+        const list = await listModel.List.findOne({ where: { name: listName, guildId: interaction.guildId } });
 
         if (list)
         {
-            if (!(hasPerms(interaction.user.id, list.authorId)))
+            if (!(hasPerms(interaction.guildId, list.guildId)))
             {
                 console.log("error! insufficient edit permissions");
                 interaction.editReply({ embeds: [feedbackMsgs.errorEmbed('edit disallowed')] });
                 return;
             }
 
-            listFunc.deleteList(listName)
+            listFunc.deleteList(listName, interaction.guildId)
             .then(() => 
             {
                 interaction.editReply({ embeds: [feedbackMsgs.successEmbed('list delete')] });
@@ -121,7 +121,7 @@ async function handleLists(interaction)
         let listName = await interaction.options.getString('name', true);
         let item = await interaction.options.getString('item', true);
         //get the list
-        const list = await listModel.List.findOne({ where: { name: listName } });
+        const list = await listModel.List.findOne({ where: { name: listName, guildId: interaction.guildId } });
 
         //add item if list exists
         if (list)
@@ -133,7 +133,7 @@ async function handleLists(interaction)
                 return;
             }
 
-            listFunc.setItem(list, item, subCommand)
+            listFunc.setItem(list, item, subCommand, interaction.guildId)
             .then(() => 
             {
                 const msg = 'list '.concat(subCommand);
@@ -144,7 +144,7 @@ async function handleLists(interaction)
             {
                 console.log(err); //log the error, then display the error message
     
-                interaction.editReply({ embeds: [feedbackMsgs.errorEmbed()] });
+                interaction.editReply({ embeds: [feedbackMsgs.errorEmbed(err)] });
             });
         }
         else //if list doesnt exist, throw an error
