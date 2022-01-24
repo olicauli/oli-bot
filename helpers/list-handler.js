@@ -144,7 +144,7 @@ async function handleLists(interaction)
             {
                 console.log(err); //log the error, then display the error message
     
-                interaction.editReply({ embeds: [feedbackMsgs.errorEmbed()] });
+                interaction.editReply({ embeds: [feedbackMsgs.errorEmbed(err)] });
             });
         }
         else //if list doesnt exist, throw an error

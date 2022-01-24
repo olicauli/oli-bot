@@ -91,7 +91,16 @@ async function setItem(list, item, option, guild)
     {
         //add or remove the item
         if (option === 'add') itemsArr.push(item);
-        else if (option === 'rm') itemsArr.splice(itemsArr.indexOf(item), 1);
+        else if (option === 'rm') 
+        {
+            if (itemsArr.indexOf(item) === -1)
+            {
+                console.log(`error: couldn't find the item!\n
+                             item: ${item}`);
+                return Promise.reject('item not found');
+            }
+            itemsArr.splice(itemsArr.indexOf(item), 1);
+        }
         //output an error if option is invalid
         else 
         {
