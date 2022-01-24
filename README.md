@@ -91,7 +91,7 @@ all current possible commands are listed below.
 
 `list rm <name> <item>` - removes an item called `<item>` from a list called `<name>`
 
-**note:** currently, only the author of a list can modify it.
+**note:** currently, any user in the same server that a list is created in can edit it.
 additionally, duplicate lists (lists with the same name) are not currently allowed.
 these are limitations that will hopefully be examined and changed in later builds of hythlodaeus.
 
