@@ -19,7 +19,7 @@
     "dotenv": "^11.0.0",
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.13.0"
+    "sequelize": "^6.29.0"
   },
   "devDependencies": {},
   "repository": {
